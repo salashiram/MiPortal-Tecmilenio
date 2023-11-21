@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Styles/login.css">
+    <link rel="stylesheet" href="../Styles/register.css">
+    <link rel="stylesheet" href="../Styles/carousel.css">
+    <script defer src="../Views/carousel.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <title>Mi Portal Tecmilenio</title>
+</head>
+<body>
+    <section> 
+        <!--carousel starts -->
+        <section id="container-slider">    
+            <a href="javascript: funcionEjecutar('anterior');" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
+            <a href="javascript: funcionEjecutar('siguiente');" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
+            <ul class="listslider">
+              <li><a itlist="itList_0" href="#" class="item-select-slid"></a></li>
+              <li><a itlist="itList_1" href="#"></a></li>
+              <li><a itlist="itList_2" href="#"></a></li>
+            </ul>
+            <ul id="slider">
+              <li style="background-image: url('../Resources/carrousel/img1.jpg'); z-index:0; opacity: 1;">
+                <div class="content_slider" >
+                  <div>
+                    <!-- <h2>Imagen 1</h2>
+                <p>Escribe el texto que aparecerá sobre la imagen número 1.</p>
+                <a href="#" target="_blank" class="btnSlider">Acceder</a> -->
+              </div>
+                </div>
+              </li>
+              <li style="background-image: url('../Resources/carrousel/img2.jpg'); ">
+                <div class="content_slider" >
+                  <div>
+                    <!-- <h2>Imagen 2</h2>
+                <p>Escribe el texto que aparecerá sobre la imagen número 2</p>
+                <a href="#" target="_blank" class="btnSlider">Acceder</a> -->
+              </div>
+                </div>
+              </li>
+              <li style="background-image: url('../Resources/carrousel/img3.jpg'); ">
+                <div class="content_slider" >
+                  <div>
+                    <!-- <h2>Imagen 3</h2>
+                <p>Escribe el texto que aparecerá sobre la imagen número 3</p>
+                <a href="#" target="_blank" class="btnSlider">Acceder</a> -->
+              </div>
+                </div>
+              </li>
+           </ul>
+         </section>
+                 <!-- carousel ends-->
+                 <!-- login frm -->
+        <div class="contentBx">
+            <div id="frm-login" class="formBx">
+                <div class="logo-content">
+                    <img src="../Resources/tecnologico-de-monterrey-blue.png" alt="">
+                    <img src="../Resources/universidad-tecmilenio9655.jpg" alt="">
+                </div>
+                <h2>Iniciar sesión</h2>
+                <form>
+                  <div class="inputBx">
+                      <i class="material-symbols-outlined">
+                          person
+                      </i>
+                      <input type="email" placeholder="hola@tecmilenio.com.mx">
+                  </div>
+                  <div class="inputBx">
+                      <i class="material-symbols-outlined">
+                          lock
+                      </i>
+                      <input type="password" required placeholder="Ingresa tu contraseña">
+                  </div>
+                  <div class="inputBx">
+                      <input type="submit" value="Iniciar sesión" id="">
+                  </div>
+                  <div class="inputBx">
+                      <p><a id="open-modal" href="#">¿Olvidaste tu contraseña?</a></p>
+                  </div>
+                  <div class="inputBx">
+                      <p>¿No te has registrado aún? <a href="#" id="linkToRegister">Registrarse</a></p>
+                  </div>
+                  <div class="inputBx">
+                      <p>¿Necesitas ayuda? Contactanos</p>
+                      <ul>
+                          <li><a href="#">Alumnos y egresados Tec de Monterrey</a></li>
+                          <li><a href="#">Alumno Tecmilenio</a></li>
+                          <li><a href="#">Colaboradores</a></li>
+                          <li><a href="#">Avisos de privacidad</a></li>
+                      </ul>
+                  </div>
+              </form>
+            </div>
+            <!-- login ends -->
+            <!-- register frm -->
+            <div id="frm-register" class="formBx">
+
+                <div class="content-indications">
+                    <h1>Registrarse</h1>
+                    <p>Campos requeridos marcados con <span>*</span></p>
+                </div>
+
+              <div class="info-gen">
+                <span><p>¿Ya tienes una cuenta? <a id="linkToLogin" href="#">Iniciar sesión</a></p></span>
+              </div>
+              <div class="input-box">
+                  <label>Nombre completo<span class="required">*</span></label>
+                  <input type="text" placeholder="" required/>
+                </div>
+                <div class="input-box">
+                  <label>Dirección de correo electrónico<span class="required">*</span></label>
+                  <input type="text" placeholder="hola@tecmilenio.com.mx" required />
+                </div>
+                <div class="column">
+                  <div class="input-box">
+                      <label for="">Contraseña<span class="required">*</span></label>
+                      <input id="inpPass1" type="password" placeholder="" required>
+                  </div>
+                  <div class="input-box">
+                      <label for="">Confirmar contraseña<span class="required">*</span></label>
+                      <input id="inpPass2" type="password" placeholder="" required>
+                      <div class="error-message" id="error-message">Las contraseñas no coinciden.</div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="input-box">
+                    <label>Matricula<span class="required">*</span></label>
+                    <input type="number" placeholder="" required/>
+                  </div>
+                  <div class="input-box">
+                                          <!-- not required -->
+                      <label>Número de teléfono<span class="required"></span></label>
+                      <input type="number" placeholder="" />
+                  </div>
+                  <div class="input-box">
+                    <label>Fecha de nacimiento<span class="required">*</span></label>
+                    <input type="date" placeholder="" required />
+                  </div>
+                </div>
+                <div class="gender-box">
+                  <h3>Tipo<span class="required">*</span></h3>
+                  <div class="gender-option">
+                    <div class="gender">
+                      <input type="radio" id="check-male" name="gender" checked />
+                      <label for="check-male">Alumno</label>
+                    </div>
+                    <div class="gender">
+                      <input type="radio" id="check-female" name="gender" />
+                      <label for="check-female">Empleado</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-box address">
+                  <label>Domicilio</label>
+                  <input type="text" placeholder="ex. Paseo de los leones apt 505"/>
+                  <div class="column">
+                    <div class="select-box">
+                      <select>
+                        <option hidden>País</option>
+                        <option>México</option>
+                      </select>
+                    </div>
+                    <input type="text" placeholder="Ciudad"/>
+                    <input type="number" placeholder="Código postal"/>
+                  </div>
+                </div>
+                <button id="btn-submit" >Guardar</button>
+          </div>
+          <!-- register ends -->
+        </div>
+    </section>
+    <!-- Password recovery -->
+    <dialog id="modal" class="modal">
+        <div class="wrapper">
+            <div class="container">
+              <div class="title-section">
+                <h2 class="title">Recuperación de la cuenta</h2>
+                <p class="para">Te enviaremos un código a tu correo electrónico registrado para reestablecer tu contraseña.</p>
+              </div>
+              <form class="form" action="">
+                <div class="input-group">
+                  <label for="" class="label-title">Ingresa tu correo electrónico</label>
+                  <input type="email" name="email" placeholder="hola@tecmilenio.com.mx">
+                  <span class="icon">&#9993</span>
+                </div>
+                <div class="input-group">
+                  <button class="submit-button" type="">Enviar</button>
+                </div>
+                <div class="input-group">
+                    <button id="close-modal" class="submit-button" type="">Cerrar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      </dialog>
+<script src="../Views/showFrm.js"></script>    
+<script src="../Controllers/PassRepeatValidation.js"></script>
+</body>
+</html>
