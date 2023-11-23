@@ -4,6 +4,13 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
+:root {
+    --white: #fff;
+    --main-color: #2639e3;
+    --secondary-color: #F9A620;
+    --grey: #434141;
+    --light-grey: #aaa;
+  }
 html{
     scroll-behavior: smooth;
 }
@@ -29,7 +36,8 @@ section .contentBx .formBx h2{
     font-size: 1.5em; 
     text-transform: uppercase;
     margin-bottom: 50px;
-    border-bottom: 4px solid #192BC2;
+    /* border-bottom: 4px solid #192BC2; */
+    border-bottom: 4px solid var(--main-color);
     display: inline-block;
     letter-spacing: 1px;
 }
@@ -70,8 +78,8 @@ section .contentBx .formBx .inputBx input{
     text-align: center;
 }
 section .contentBx .formBx .inputBx input[type="submit"]{
-    background: #192BC2;
-    color: #fff;
+    background: var(--main-color);
+    color: var(--white);
     outline: none;
     border: none;
     font-weight: 500;
@@ -80,7 +88,7 @@ section .contentBx .formBx .inputBx input[type="submit"]{
     transition: .1s ease-in;
 }
 section .contentBx .formBx .inputBx input[type="submit"]:hover{
-    background: #F9A620;
+    background: var(--secondary-color);
     color: #fff;
     transition: .1s ease-in;
 }
@@ -91,28 +99,29 @@ section .contentBx .formBx .inputBx p{
     /* letter-spacing: 1px; */
 }
 section .contentBx .formBx .inputBx p a{
-    color: #192BC2;
+    color: var(--main-color);
     font-weight: 400;
     font-size: 16px;
     /* letter-spacing: 1px; */
     transition: .1s ease-in;
 }
 section .contentBx .formBx .inputBx p a:hover{
-    color: #F9A620;
+    /* color: #F9A620; */
+    color: var(--secondary-color);
     transition: .1s ease-in;
 }
 section .contentBx .formBx .inputBx ul{
     margin-top: 25px;
 }
 section .contentBx .formBx .inputBx li a{
-    color: #192BC2;
+    color: var(--main-color);
     font-size: 16px;
     /* letter-spacing: 1px; */
     text-decoration: none;
     transition: .1s ease-in;
 }
 section .contentBx .formBx .inputBx li a:hover{
-    color: #F9A620;
+    color: var(--secondary-color);
     transition: .1s ease-in;
 }
 .logo-content{
