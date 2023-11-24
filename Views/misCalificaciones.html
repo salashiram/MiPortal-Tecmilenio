@@ -7,7 +7,10 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <!-- add CSS -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+  />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -92,33 +95,35 @@
         </div>
       </div>
     </nav>
-
-
-
-
-
     <div class="container">
       <div class="content">
         <h3>Mis calificaciones</h3>
         <p>Consulta resultados totales y parciales del curso presente o posteriores.</p>
-        <select name="" id="">
-          <option value="Periodo intersemestral Ago 2023 - Dic 2023"></option>
-          <option value="Periodo intersemestral Ago 2023 - Dic 2023"></option>
-          <option value="Periodo intersemestral Ago 2023 - Dic 2023"></option>
-          <option value="Periodo intersemestral Ago 2023 - Dic 2023"></option>
-          <option value="Periodo intersemestral Ago 2023 - Dic 2023"></option>
-        </select>
+            <!-- filter start -->
+    <div class="search-bar">
+      <div class="dropdown">
+        <div id="drop-text" class="dropdown-text">
+          <span id="span">Periodo</span>
+          <i id="icon" class="fa-solid fa-chevron-down"></i>
+        </div>
+        <!-- selector de periodo de calificaciones -->
+        <ul id="list" class="dropdown-list">
+          <li class="dropdown-list-item">Periodo Ago 2023 - Dic 2023</li>
+          <li class="dropdown-list-item">Periodo Ago 2024 - Dic 2024</li>
+          <li class="dropdown-list-item">Periodo Ago 2025 - Dic 2025</li>
+          <li class="dropdown-list-item">Periodo Ago 2026 - Dic 2026</li>
+        </ul>
+      </div>
+                <!-- text field para buscar materia en especifico -->
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Buscar materia"/>
+        <i class="fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
+        <!-- filter ends -->
+        </div>
+      </div>
     <script src="../Controllers/sideBar.js"></script>
+    <script src="../Controllers/dropDown.js"></script>
   </body>
 </html>

@@ -6,12 +6,6 @@
     --light-grey: #aaa;
     --shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   } 
-  /* :root {
-    --blue: #9ab3f5;
-    --purple: #9a1663;
-    --white: #ffffff;
-    --shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  } */
 .container {
     display: flex;
     justify-content: center;
@@ -34,6 +28,11 @@
 }
 .content p{
     font-size: 20px;
+}
+.section{
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
 }
 .search-bar {
     display: flex;
