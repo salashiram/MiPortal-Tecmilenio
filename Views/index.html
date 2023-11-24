@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Mi Portal Tecmilenio</title>
 </head>
 <body>
@@ -81,6 +82,8 @@
                     
                       <input type="submit" value="Iniciar sesión" id="btn-click">
                   </div>
+                  <div id="errorMensaje" class="mensajeError" style="display: none;">Credenciales incorrectas</div>
+
                   <div class="inputBx">
                       <p><a id="open-modal" href="#">¿Olvidaste tu contraseña?</a></p>
                   </div>
@@ -108,68 +111,70 @@
               <div class="info-gen">
                 <span><p>¿Ya tienes una cuenta? <a id="linkToLogin" href="#">Iniciar sesión</a></p></span>
               </div>
+              <form id="formRegistro"  method="POST">
               <div class="input-box">
                   <label>Nombre completo<span class="required">*</span></label>
-                  <input type="text" placeholder="" required/>
+                  <input type="text" placeholder="" required name="nombre"/>
               </div>
                 <div class="input-box">
                   <label>Dirección de correo electrónico<span class="required">*</span></label>
-                  <input type="text" placeholder="hola@tecmilenio.com.mx" required />
+                  <input type="text" placeholder="hola@tecmilenio.com.mx" required name="correo"/>
                 </div>
                 <div class="column">
                   <div class="input-box">
                       <label for="">Contraseña<span class="required">*</span></label>
-                      <input id="inpPass1" type="password" placeholder="" required>
+                      <input id="inpPass1" type="password" placeholder="" required name="contrasenia">
                   </div>
                   <div class="input-box">
                       <label for="">Confirmar contraseña<span class="required">*</span></label>
-                      <input id="inpPass2" type="password" placeholder="" required>
+                      <input id="inpPass2" type="password" placeholder="" required name="confcontra">
                       <div class="error-message" id="error-message">Las contraseñas no coinciden.</div>
                   </div>
                 </div>
                 <div class="column">
                   <div class="input-box">
                     <label>Matricula<span class="required">*</span></label>
-                    <input type="number" placeholder="" required/>
+                    <input type="number" placeholder="" required name="matricula"/>
                   </div>
                   <div class="input-box">
                                           <!-- not required -->
                       <label>Número de teléfono<span class="required"></span></label>
-                      <input type="number" placeholder="" />
+                      <input type="number" placeholder="" name="telefono" />
                   </div>
                   <div class="input-box">
-                    <label>Fecha de nacimiento<span class="required">*</span></label>
-                    <input type="date" placeholder="" required />
+                    <label>Fecha de nacimiento<span class="required" >*</span></label>
+                    <input type="date" placeholder="" required name="Fecha_N"/>
                   </div>
                 </div>
                 <div class="gender-box">
                   <h3>Tipo<span class="required">*</span></h3>
                   <div class="gender-option">
                     <div class="gender">
-                      <input type="radio" id="check-male" name="gender" checked />
+                      <input type="radio" id="check-male" name="gender"value="alumno" checked />
                       <label for="check-male">Alumno</label>
                     </div>
                     <div class="gender">
-                      <input type="radio" id="check-female" name="gender" />
+                      <input type="radio" id="check-female" name="gender"value="empleado" />
                       <label for="check-female">Empleado</label>
                     </div>
                   </div>
                 </div>
                 <div class="input-box address">
                   <label>Domicilio</label>
-                  <input type="text" placeholder="ex. Paseo de los leones apt 505"/>
+                  <input type="text" placeholder="ex. Paseo de los leones apt 505" name="domicilio"/>
                   <div class="column">
                     <div class="select-box">
-                      <select>
+                      <select name="pais">
                         <option hidden>País</option>
                         <option>México</option>
                       </select>
                     </div>
-                    <input type="text" placeholder="Ciudad"/>
-                    <input type="number" placeholder="Código postal"/>
+                    <input type="text" placeholder="Ciudad" name="ciudad"/>
+                    <input type="number" placeholder="Código postal" name="cp"/>
                   </div>
                 </div>
                 <button id="btn-submit" >Guardar</button>
+              </form>
           </div>
           <!-- register ends -->
         </div>
@@ -200,5 +205,38 @@
       </dialog>
 <script src="../Views/showFrm.js"></script>    
 <script src="../Controllers/PassRepeatValidation.js"></script>
+<script>
+  $(document).ready(function() {
+      $('#formRegistro').submit(function(event) {
+          
+          event.preventDefault();          
+          $.ajax({
+              type: 'POST',
+              url: '../Models/registro.php',
+              data: $(this).serialize(),
+              dataType: 'json',
+              success: function(response) {
+                  
+                  console.log('Respuesta recibida: ', response);
+                  alert('Registro exitoso, ara ara~');
+                  window.location.reload();
+              },
+              error: function() {
+                  
+                  console.error('Error en la solicitud AJAX');
+              }
+          });
+      });
+      var urlParams = new URLSearchParams(window.location.search);
+var error = urlParams.get('error');
+
+if (error && error.trim() !== "") { // Check if 'error' is not empty or null
+    $('#errorMensaje').text(decodeURIComponent(error)).show();
+} else {
+    $('#errorMensaje').hide(); // Make sure it's hidden if there's no error
+}
+  });
+  </script>
+  
 </body>
 </html>

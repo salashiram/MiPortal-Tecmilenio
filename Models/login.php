@@ -55,7 +55,7 @@ if (isset($_POST['usuario']) && isset($_POST['pass'])) {
             // Inicio de sesión fallido
             
             $error_message = "Credenciales incorrectas";
-            header("Location: ../index.html?error=" . urlencode($error_message));
+            header("Location: ../Views/index.html?error=" . urlencode($error_message));
             exit();
         }
     

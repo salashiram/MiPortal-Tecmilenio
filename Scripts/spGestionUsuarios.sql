@@ -25,7 +25,7 @@ BEGIN
     IF p_Accion = 'IN' THEN
         SET p_FechaIngreso = CURDATE();
         INSERT INTO Usuario(Correo, NombreCompleto, Contrasena, FechaNacimiento, Matricula, Telefono, FechaIngreso, Rol, Calle, Pais, Ciudad, CP, UsuarioEliminado)
-        VALUES(p_Correo, p_NombreCompleto, p_Contrasena, p_FechaNacimiento, p_Matricula, p_Telefono, p_FechaIngreso, p_Rol, p_Calle, p_Pais, p_Ciudad, p_CP, p_UsuarioEliminado);
+        VALUES(p_Correo, p_NombreCompleto, p_Contrasena, p_FechaNacimiento, p_Matricula, p_Telefono, current_date(), p_Rol, p_Calle, p_Pais, p_Ciudad, p_CP, 0);
     END IF;
 
     IF p_Accion = 'UP' THEN
