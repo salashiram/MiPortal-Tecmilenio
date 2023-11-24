@@ -30,6 +30,7 @@
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
       crossorigin="anonymous"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Username</title>
   </head>
   <body>
@@ -188,36 +189,66 @@
           </div>
         </div>
       </div>
-       <div id="info-view" class="perfil-usuario-body">
+      <div id="info-view" class="perfil-usuario-body">
         <div class="perfil-usuario-bio">
-          <h3 class="titulo">Maria Alejandra De la Cruz</h3>
-          <p class="texto">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+            <h3 class="titulo" id="nombre">Nombre del Usuario</h3>
+            <p class="texto" id="correo">Correo Electrónico</p>
         </div>
         <div class="perfil-usuario-footer">
-          <ul class="lista-datos">
-            <li><i class="icono fas fa-map-marker-alt"></i>Ubicacion.</li>
-            <li><i class="icono fas fa-map-signs"></i>Direccion de usuario.</li>
-            <li><i class="icono fas fa-phone-alt"></i>Telefono.</li>
-            <li><i class="icono fas fa-calendar-alt"></i>Fecha nacimiento.</li>
-       </ul>
-          <ul class="lista-datos">
-            <li><i class="icono fas fa-user-check"></i>Registro.</li>
-            <li><i class="icono fas fa-building"></i>Carrera.</li>
-            <li><i class="icono fas fa-share-alt"></i>Matricula.</li>
-          </ul>
+            <ul class="lista-datos">
+                <li><i class="icono fas fa-map-marker-alt"></i>Ubicación: <span id="ciudad">Ciudad: </span></li>
+                <li><i class="icono fas fa-map-signs"></i>Dirección: <span id="calle">Dirección de Usuario: </span></li>
+                <li><i class="icono fas fa-phone-alt"></i>Telefono: <span id="telefono">Teléfono: </span></li>
+                <li><i class="icono fas fa-calendar-alt"></i>Fecha de Nacimiento: <span id="fecha_nacimiento">Fecha de Nacimiento: </span></li>
+            </ul>
+            <ul class="lista-datos">
+                <li><i class="icono fas fa-user-check"></i>Registro: <span id="registro">Activo</span></li>
+                <li><i class="icono fas fa-building"></i>Carrera: <span id="carrera"> LMAD</span></li>
+                <li><i class="icono fas fa-share-alt"></i>Matricula: <span id="matricula">Número de Matricula: </span></li>
+            </ul>
         </div>
         <div class="first-div">
-          <div class="second-div">
-            <button id="btn-edit">Editar</button>
-          </div>
+            <div class="second-div">
+                <button id="btn-edit">Editar</button>
+            </div>
         </div>
-      </div> 
+    </div>
+    
+    
     </section>
     <script src="../Controllers/sideBar.js"></script>
     <script src="../Controllers/characterCounter.js"></script>
     <script src="../Controllers/showEditInfo.js"></script>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: '../Models/perfil.php',
+          type: 'GET',
+          dataType: 'json',
+          statusCode: {
+            302: function() {
+              // Redirigir al usuario a la página de inicio
+              window.location.href = './index.html';
+            }
+          },
+          success: function(response) {
+            
+            $('#matricula').text(response.matricula);
+            $('#pais').text(response.pais);
+            $('#ciudad').text(response.ciudad);
+            $('#fecha_nacimiento').text(response.fecha_nacimiento);
+            $('#calle').text(response.calle);
+            $('#telefono').text(response.telefono);
+            $('#nombre').text(response.nombre);
+           
+            $('#correo').text(response.correo);
+          },
+          error: function(xhr, status, error) {
+            
+            console.error(error);
+          }
+        });
+      });
+    </script>
   </body>
 </html>

@@ -39,8 +39,8 @@ if (isset($_POST['usuario']) && isset($_POST['pass'])) {
                 $_SESSION['matricula'] = $row['Matricula'];
                 $_SESSION['telefono'] = $row['Telefono'];
                 $_SESSION['ID_usuario'] = $row['IdUsuario'];
-              
-                
+                $_SESSION['fecha-nacimiento'] = $row['FechaNacimiento'];
+                $_SESSION['correo'] = $row['Correo'];
                 $_SESSION['fecha'] = $row['FechaIngreso'];
                 $_SESSION['calle'] = $row['Calle'];
                 $_SESSION['pais'] = $row['Pais'];
