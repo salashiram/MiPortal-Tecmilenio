@@ -1,0 +1,18 @@
+{
+    "name": "rober/mi-portal-tecmilenio",
+    "description": "require phpmailer",
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rober\\MiPortalTecmilenio\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Roberto Ruiz",
+            "email": "112975092+CopitoFrostbite@users.noreply.github.com"
+        }
+    ]
+}

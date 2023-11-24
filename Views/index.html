@@ -187,7 +187,7 @@
                 <h2 class="title">Recuperación de la cuenta</h2>
                 <p class="para">Te enviaremos un código a tu correo electrónico registrado para reestablecer tu contraseña.</p>
               </div>
-              <form class="form" action="">
+              <form class="form" id="formRecuperacion" action="../Models/phpmailer.php" method="post">
                 <div class="input-group">
                   <label for="" class="label-title">Ingresa tu correo electrónico</label>
                   <input type="email" name="email" placeholder="hola@tecmilenio.com.mx">
@@ -196,15 +196,18 @@
                 <div class="input-group">
                   <button class="submit-button" type="">Enviar</button>
                 </div>
-                <div class="input-group">
-                    <button id="close-modal" class="submit-button" type="">Cerrar</button>
-                </div>
+                
               </form>
+              <div class="input-group">
+                <button id="close-modal" class="submit-button" type="">Cerrar</button>
+            </div>
             </div>
           </div>
       </dialog>
 <script src="../Views/showFrm.js"></script>    
 <script src="../Controllers/PassRepeatValidation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
   $(document).ready(function() {
       $('#formRegistro').submit(function(event) {
@@ -218,7 +221,7 @@
               success: function(response) {
                   
                   console.log('Respuesta recibida: ', response);
-                  alert('Registro exitoso, ara ara~');
+                  alert('Registro exitoso');
                   window.location.reload();
               },
               error: function() {
@@ -228,13 +231,45 @@
           });
       });
       var urlParams = new URLSearchParams(window.location.search);
-var error = urlParams.get('error');
+      var error = urlParams.get('error');
 
-if (error && error.trim() !== "") { // Check if 'error' is not empty or null
-    $('#errorMensaje').text(decodeURIComponent(error)).show();
-} else {
-    $('#errorMensaje').hide(); // Make sure it's hidden if there's no error
-}
+      if (error && error.trim() !== "") { // Check if 'error' is not empty or null
+          $('#errorMensaje').text(decodeURIComponent(error)).show();
+      } else {
+          $('#errorMensaje').hide(); // Make sure it's hidden if there's no error
+      }
+      $('#formRecuperacion').on('submit', function(e) {
+        e.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(), // Envía los datos del formulario
+            success: function(response) {
+                var data = JSON.parse(response);
+                document.getElementById('modal').close();
+                if(data.status === 'success') {
+                    
+                  Swal.fire({
+                        title: 'Éxito',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            },
+            error: function() {
+                // Manejar errores aquí
+                alert('Error al enviar el formulario.');
+            }
+        });
+    });
   });
   </script>
   
