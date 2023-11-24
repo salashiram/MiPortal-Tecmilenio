@@ -64,20 +64,21 @@
                     <img src="../Resources/universidad-tecmilenio9655.jpg" alt="">
                 </div>
                 <h2>Iniciar sesión</h2>
-                <form>
+                <form  action="../Models/login.php" method="POST">
                   <div class="inputBx">
                       <i class="material-symbols-outlined">
                           person
                       </i>
-                      <input type="email" placeholder="hola@tecmilenio.com.mx">
+                      <input type="email" placeholder="hola@tecmilenio.com.mx" name="usuario">
                   </div>
                   <div class="inputBx">
                       <i class="material-symbols-outlined">
                           lock
                       </i>
-                      <input type="password" required placeholder="Ingresa tu contraseña">
+                      <input type="password" required placeholder="Ingresa tu contraseña" name="pass">
                   </div>
                   <div class="inputBx">
+                    
                       <input type="submit" value="Iniciar sesión" id="btn-click">
                   </div>
                   <div class="inputBx">
