@@ -119,6 +119,7 @@ section .contentBx {
   border: none;
   color: #707070;
   font-size: 1rem;
+  text-transform: uppercase;
 }
 .formBx button {
   height: 55px;
