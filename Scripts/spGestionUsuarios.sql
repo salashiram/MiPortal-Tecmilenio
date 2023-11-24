@@ -32,17 +32,17 @@ BEGIN
         UPDATE Usuario
         SET Correo = p_Correo,
             NombreCompleto = p_NombreCompleto,
-            Contrasena = p_Contrasena,
+           
             FechaNacimiento = p_FechaNacimiento,
             Matricula = p_Matricula,
             Telefono = p_Telefono,
-            FechaIngreso = CURDATE(),
-            Rol = p_Rol,
+            
+            
             Calle = p_Calle,
             Pais = p_Pais,
             Ciudad = p_Ciudad,
-            CP = p_CP,
-            UsuarioEliminado = p_UsuarioEliminado
+            CP = p_CP
+            
         WHERE IdUsuario = p_ID_usuario;
     END IF;
 

@@ -9,7 +9,7 @@ CREATE PROCEDURE spLoginUsuario (
     IN p_Contrasena VARCHAR(30)
 )
 BEGIN
-    SELECT IdUsuario, Correo, NombreCompleto, Rol, FechaIngreso, FechaNacimiento, UsuarioEliminado
+    SELECT IdUsuario, Correo, NombreCompleto, Matricula,Telefono,Calle,Pais,Ciudad,CP, Rol, FechaIngreso, FechaNacimiento, UsuarioEliminado
     FROM Usuario
     WHERE Correo = p_Correo AND Contrasena = p_Contrasena;
 END //

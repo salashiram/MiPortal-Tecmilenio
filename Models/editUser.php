@@ -1,10 +1,10 @@
 <?php
 
 require_once 'conexion.php';
-
+session_start();
 
 $usuarioExistente = 0;
-
+$IdUsuario = $_SESSION['ID_usuario'];
 
 if($_POST){
     
@@ -13,23 +13,11 @@ if($_POST){
     $correo = $_POST['correo'];
     $fechaNac = $_POST['Fecha_N'];
     
-    $contraseña = $_POST['contrasenia'];
     
-    $confcontra = $_POST['confcontra'];
     $matricula = $_POST['matricula'];
     $telefono = $_POST['telefono'];
     
-    $seleccion = $_POST['gender'];
-    $rol = 0;
     
-   
-    
-      if ($seleccion == 'alumno') {
-          $rol = 1;
-          
-      } else if ($seleccion == 'empleado') {
-          $rol = 0;
-      }
     
     $domicilio = $_POST['domicilio'];
     $pais = $_POST['pais'];
@@ -57,13 +45,32 @@ if($_POST){
         echo "El usuario ya existe. Por favor, elige otro nombre de usuario.";
     } else {
         
-            $query = "CALL spGestionUsuarios('IN','1','$correo','$nombre','$contraseña','$fechaNac','$matricula','$telefono','$fechaNac','$rol','$domicilio','$pais','$ciudad','$cp','0')";
+            $query = "CALL spGestionUsuarios('UP','$IdUsuario','$correo','$nombre','$0','$fechaNac','$matricula','$telefono','$fechaNac','0','$domicilio','$pais','$ciudad','$cp','0')";
             $result = mysqli_query($conn, $query);
             if (!$result) {
                 // Enviar respuesta de error
                 echo json_encode(['success' => false, 'message' => 'Error al ejecutar la consulta: ' . mysqli_error($conn)]);
             } else {
                 // Enviar respuesta de éxito
+                
+                // Guardar usuario y rol en la sesión
+                $_SESSION['usuario'] = $correo;
+                
+                
+               
+                
+                $_SESSION['nombre'] = $nombre;
+                $_SESSION['matricula'] =$matricula;
+                $_SESSION['telefono'] = $telefono;
+                
+                
+                $_SESSION['correo'] =$correo;
+                $_SESSION['fecha'] = $fechaNac;
+                $_SESSION['calle'] = $domicilio;
+                $_SESSION['pais'] = $pais;
+                $_SESSION['ciudad'] = $ciudad;
+                $_SESSION['cp'] = $cp;
+                
                 echo json_encode(['success' => true, 'message' => 'Registro exitoso, ara ara~']);
             }
             exit();
