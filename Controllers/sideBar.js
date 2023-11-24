@@ -10,7 +10,6 @@ sidebarClose.addEventListener("click", () => {
 sidebarExpand.addEventListener("click", () => {
   sidebar.classList.remove("close", "hoverable");
 });
-
 sidebar.addEventListener("mouseenter", () => {
   if (sidebar.classList.contains("hoverable")) {
     sidebar.classList.remove("close");
@@ -21,7 +20,6 @@ sidebar.addEventListener("mouseleave", () => {
     sidebar.classList.add("close");
   }
 });
-
 if(window.innerWidth < 768){
   sidebar.classList.add("close");
 }else{

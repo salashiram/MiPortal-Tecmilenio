@@ -6,6 +6,9 @@
     --light-grey: #aaa;
     --shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   } 
+  *{
+    font-family: 'Montserrat', sans-serif;
+  }
   /* :root {
     --blue: #9ab3f5;
     --purple: #9a1663;
