@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "BDMserver8.";
+$password = "YHsy8B2QJQTrYg3A";
 $dbname = "ieuw";
 
 // Create connection
