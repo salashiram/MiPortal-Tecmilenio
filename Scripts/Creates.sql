@@ -7,7 +7,13 @@ IdCursoUsuario INT auto_increment PRIMARY KEY NOT NULL, -- PK
 IdCurso INT  NOT NULL, -- FK(Curso)
 IdUsuario INT NOT NULL, -- FK(Usuario)
 IdPeriodo INT NOT NULL, -- FK(Periodo)
-Calif DECIMAL(3,2) ,
+PrimerParcial DECIMAL(5,2) ,
+SegundoParcial DECIMAL(5,2) ,
+TercerParcial DECIMAL(5,2) ,
+Oportunidad int not null,
+Profesor VARCHAR(50) not null ,
+Modalidad bool not null,
+Aula VARCHAR(50) not null ,
 Observaciones VARCHAR(200) ,
 Grupo int not null, 
 Fecha DATE NOT NULL
@@ -43,9 +49,6 @@ CREATE TABLE Curso
   Creditos int not null,  
   CursoEliminado BOOL NOT NULL
 );
-
-
-
 
 DROP TABLE IF EXISTS Usuario;
 CREATE TABLE Usuario
