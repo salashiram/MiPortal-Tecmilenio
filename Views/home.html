@@ -20,6 +20,8 @@
     />
     <link rel="stylesheet" href="../Styles/side-bar.css">
     <link rel="stylesheet" href="../Styles/home.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Home</title>
   </head>
   <body>
@@ -78,7 +80,7 @@
               <a href="../Views/userProfile.html">
                 <img src="ruta_de_la_imagen.jpg" alt="Imagen de perfil" class="profile_image">
               </a>
-              <p class="user-name">salashiram@outlook.com</p>
+              <p class="user-name" id="correo"></p>
             </div>
           </div>
           <!-- Cerrar sesión -->
@@ -108,9 +110,66 @@
     <div class="container">
       <div class="content">
         <h3>Home</h3>
-        <p>Hola,<span class="full-name">Humberto Hiram Salas Tenorio</span></p>
+        <p>Hola,<span class="full-name" id="nombre"></span></p>
       </div>
     </div>
     <script src="../Controllers/sideBar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: '../Models/perfil.php',
+          type: 'GET',
+          dataType: 'json',
+          statusCode: {
+            302: function() {
+              // Redirigir al usuario a la página de inicio
+              window.location.href = './index.html';
+            }
+          },
+          success: function(response) {
+            
+            $('#matricula').text(response.matricula);
+            $('#pais').text(response.pais);
+            $('#ciudad').text(response.ciudad);
+            $('#fecha_nacimiento').text(response.fecha_nacimiento);
+            $('#calle').text(response.calle);
+            $('#telefono').text(response.telefono);
+            $('#nombre').text(response.nombre);
+           
+            $('#correo').text(response.correo);
+          },
+          error: function(xhr, status, error) {
+            
+            console.error(error);
+          }
+        });
+        $('#logoutButton').click(function(e) {
+        e.preventDefault(); 
+
+        $.ajax({
+            type: 'POST',
+            url: '../Models/logout.php', 
+            success: function(response) {
+              Swal.fire({
+                  title: 'Éxito',
+                  text: 'Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.',
+                  icon: 'success',
+                  confirmButtonText: 'Ok'
+              }).then((result) => {
+                  if (result.value) {
+                      window.location.href = './index.html';
+                  }
+              });
+            },
+            error: function() {
+                // Manejo de errores
+                alert('Error al cerrar sesión');
+            }
+        });
+    });
+        
+      });
+    </script>
   </body>
 </html>

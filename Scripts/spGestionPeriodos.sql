@@ -7,7 +7,7 @@ DELIMITER //
 CREATE PROCEDURE spGestionPeriodos(
     IN p_Accion CHAR(3),
     IN p_ID_periodo INT,
-    IN p_NombrePeriodo VARCHAR(30)
+    IN p_NombrePeriodo VARCHAR(100)
 )
 BEGIN
     IF p_Accion = 'IN' THEN

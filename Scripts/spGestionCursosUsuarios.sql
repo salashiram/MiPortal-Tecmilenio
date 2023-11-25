@@ -11,7 +11,7 @@ CREATE PROCEDURE spGestionCursosUsuarios(
     IN p_ID_usuario INT,
     IN p_ID_periodo INT,
     IN p_Calif DECIMAL(3,2),
-    IN p_Observaciones VARCHAR(50),
+    IN p_Observaciones VARCHAR(200),
     IN p_Grupo INT,
     IN p_Fecha DATE
 )

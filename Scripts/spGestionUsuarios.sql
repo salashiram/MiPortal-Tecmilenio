@@ -7,17 +7,17 @@ DELIMITER //
 CREATE PROCEDURE spGestionUsuarios(
     IN p_Accion CHAR(3),
     IN p_ID_usuario INT,
-    IN p_Correo VARCHAR(30),
-    IN p_NombreCompleto VARCHAR(30),
+    IN p_Correo VARCHAR(50),
+    IN p_NombreCompleto VARCHAR(50),
     IN p_Contrasena VARCHAR(30),
     IN p_FechaNacimiento DATE,
     IN p_Matricula INT,
     IN p_Telefono INT,
     IN p_FechaIngreso DATE,
     IN p_Rol BOOLEAN,
-    IN p_Calle VARCHAR(50),
+    IN p_Calle VARCHAR(200),
     IN p_Pais VARCHAR(30),
-    IN p_Ciudad VARCHAR(30),
+    IN p_Ciudad VARCHAR(50),
     IN p_CP INT,
     IN p_UsuarioEliminado BOOL
 )
@@ -60,6 +60,11 @@ BEGIN
         SELECT IdUsuario, Correo, NombreCompleto, Contrasena, FechaNacimiento, Matricula, Telefono, FechaIngreso, Rol, Calle, Pais, Ciudad, CP, UsuarioEliminado
         FROM Usuario
         WHERE IdUsuario = p_ID_usuario;
+    END IF;
+    IF p_Accion = 'SE2' THEN
+        SELECT IdUsuario
+        FROM Usuario
+        WHERE Correo = p_Correo;
     END IF;
 END //
 
