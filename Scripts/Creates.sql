@@ -44,6 +44,9 @@ CREATE TABLE Curso
   CursoEliminado BOOL NOT NULL
 );
 
+
+
+
 DROP TABLE IF EXISTS Usuario;
 CREATE TABLE Usuario
 (
