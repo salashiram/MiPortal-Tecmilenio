@@ -1,6 +1,11 @@
 <?php
- require_once 'conexion.php'; 
-session_start();
+ require_once 'conexion.php';
+ session_start();
+ if (!isset($_SESSION['usuario'])) {
+    session_unset();
+
+ }
+
 
 // Obtener los valores del formulario de inicio de sesión
 if (isset($_POST['usuario']) && isset($_POST['pass'])) {

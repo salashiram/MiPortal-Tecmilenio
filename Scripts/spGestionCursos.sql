@@ -7,7 +7,7 @@ DELIMITER //
 CREATE PROCEDURE spGestionCursos(
     IN p_Accion CHAR(3),
     IN p_ID_curso INT,
-    IN p_NombreCurso VARCHAR(30),
+    IN p_NombreCurso VARCHAR(100),
     IN p_Semestre INT,
     IN p_Creditos INT,
     IN p_CursoEliminado BOOL

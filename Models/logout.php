@@ -8,6 +8,6 @@ session_unset();
 session_destroy();
 
 // Redirigir a index.html
-header("Location: ../Views/index.html");
+echo json_encode(['status' => 'success', 'message' => 'Sesión cerrada exitosamente']);
 exit();
 ?>
