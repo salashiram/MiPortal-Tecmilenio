@@ -17,7 +17,7 @@ $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
 $email = $_POST['email']; // La dirección de correo electrónico del destinatario
-
+$_SESSION['correo'] = $email;
 $mail->setFrom('ieuw3660@gmail.com', 'IEUW');
 $mail->addAddress($email); // Añadir el destinatario
 $mail->isHTML(true); // Configurar el formato del email a HTML
@@ -100,19 +100,21 @@ if ($usuarioExistente > 0) {
             }
         } while ($conn->more_results() && $conn->next_result());
 
-        echo json_encode(['success' => true, 'message' => 'Registro exitoso, ara ara~']);
+        try {
+            $mail->send();
+            $response = ['status' => 'success', 'message' => 'Mensaje enviado'];
+        } catch (Exception $e) {
+            $response = ['status' => 'error', 'message' => 'El mensaje no se pudo enviar. Error: ' . $mail->ErrorInfo];
+        }
+
+        
     }
 } else {
-    echo "El usuario no existe.";
+    $response = ['status' => 'error', 'message' => 'El mensaje no se pudo enviar' ];
 }
 
 
-try {
-    $mail->send();
-    $response = ['status' => 'success', 'message' => 'Mensaje enviado'];
-} catch (Exception $e) {
-    $response = ['status' => 'error', 'message' => 'El mensaje no se pudo enviar. Error: ' . $mail->ErrorInfo];
-}
+
 
 echo json_encode($response);
 
