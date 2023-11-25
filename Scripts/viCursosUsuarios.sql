@@ -28,6 +28,7 @@ SELECT
     u.Ciudad,
     u.CP,
     p.NombrePeriodo AS Periodo,
+    p.IdPeriodo,
     (SELECT COUNT(*) FROM CursosUsuarios WHERE IdUsuario = cu.IdUsuario AND IdPeriodo = cu.IdPeriodo) AS TotalCursosPeriodo
 FROM
     CursosUsuarios cu

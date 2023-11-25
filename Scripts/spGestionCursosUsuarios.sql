@@ -82,7 +82,7 @@ BEGIN
     END IF;
     IF p_Accion = 'SE2' THEN
     SELECT 
-        Curso AS 'Nombre de la Materia',
+        Curso ,
         Oportunidad,
         Profesor,
         Modalidad,
@@ -94,20 +94,21 @@ BEGIN
 END IF;
 IF p_Accion = 'SE3' THEN
     SELECT 
-        v.NombreCurso AS 'Materia',
+        v.Curso,
+
         v.Oportunidad,
+        v.Profesor,
         v.PrimerParcial,
         v.SegundoParcial,
         v.TercerParcial,
-        (v.PrimerParcial + v.SegundoParcial + v.TercerParcial)/3 AS 'Promedio',
-        p.NombrePeriodo
+        ROUND((v.PrimerParcial + v.SegundoParcial + v.TercerParcial) / 3, 2) AS 'Promedio',
+        v.Periodo
     FROM 
         viDetalleCursosUsuarios v
-    JOIN Periodo p ON v.IdPeriodo = p.IdPeriodo
+    
     WHERE 
-        v.IdUsuario = p_ID_usuario
-    ORDER BY 
-        v.IdPeriodo DESC, v.Promedio DESC;
+        v.IdUsuario= p_ID_usuario
+    ;
 END IF;
 END //
 

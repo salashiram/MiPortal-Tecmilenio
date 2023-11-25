@@ -23,6 +23,7 @@
     />
     <link rel="stylesheet" href="../Styles/side-bar.css">
     <link rel="stylesheet" href="../Styles/calificaciones.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Calificaciones</title>
   </head>
   <body>
@@ -139,86 +140,85 @@
         <!-- filter ends -->
         </div>
       </div>
-      <div class="container">
-        <div class="card">
-          <!-- <img src="../Resources/Icons/email.jpg" alt="" /> -->
-          <div class="card-content">
-            <h3>Materia:</h3>
-            <h3>Oportunidad:</h3>
-            <h3>Profesor:</h3>
-            <h3>Primer parcial:</h3>
-            <h3>Segundo parcial:</h3>
-            <h3>Tercer parcial:</h3>
-            <h3>Calificación final:</h3>
-          </div>
-        </div>
-        <div class="card">
-          <!-- <img src="../Resources/Icons/email.jpg" alt="" /> -->
-          <div class="card-content">
-            <h3>Materia:</h3>
-            <h3>Oportunidad:</h3>
-            <h3>Profesor:</h3>
-            <h3>Primer parcial:</h3>
-            <h3>Segundo parcial:</h3>
-            <h3>Tercer parcial:</h3>
-            <h3>Calificación final:</h3>
-          </div>
-        </div>
-        <div class="card">
-          <!-- <img src="../Resources/Icons/email.jpg" alt="" /> -->
-          <div class="card-content">
-            <h3>Materia:</h3>
-            <h3>Oportunidad:</h3>
-            <h3>Profesor:</h3>
-            <h3>Primer parcial:</h3>
-            <h3>Segundo parcial:</h3>
-            <h3>Tercer parcial:</h3>
-            <h3>Calificación final:</h3>
-          </div>
-        </div>
-        <div class="card">
-          <!-- <img src="../Resources/Icons/email.jpg" alt="" /> -->
-          <div class="card-content">
-            <h3>Materia:</h3>
-            <h3>Oportunidad:</h3>
-            <h3>Profesor:</h3>
-            <h3>Primer parcial:</h3>
-            <h3>Segundo parcial:</h3>
-            <h3>Tercer parcial:</h3>
-            <h3>Calificación final:</h3>
-          </div>
-        </div>
-        <div class="card">
-          <!-- <img src="../Resources/Icons/email.jpg" alt="" /> -->
-          <div class="card-content">
-            <h3>Materia:</h3>
-            <h3>Oportunidad:</h3>
-            <h3>Profesor:</h3>
-            <h3>Primer parcial:</h3>
-            <h3>Segundo parcial:</h3>
-            <h3>Tercer parcial:</h3>
-            <h3>Calificación final:</h3>
-          </div>
-        </div>
-        <div class="card">
-          <!-- <img src="../Resources/Icons/email.jpg" alt="" /> -->
-          <div class="card-content">
-            <h3>Materia:</h3>
-            <h3>Oportunidad:</h3>
-            <h3>Profesor:</h3>
-            <h3>Primer parcial:</h3>
-            <h3>Segundo parcial:</h3>
-            <h3>Tercer parcial:</h3>
-            <h3>Calificación final:</h3>
-          </div>
-        </div>
-        <div class="promedio">
-          <h1>Promedio final del curso: <span></span></h1>
-        </div>
-        </div>
-        </div>
-      </div>
+      <div class="container" id="contenedorPrincipal">
+       
     <script src="../Controllers/sideBar.js"></script>
     <script src="../Controllers/dropDown.js"></script>
+    <script>
+
+      
+      $(document).ready(function () {
+      
+      $('form').submit(function (event) {
+      event.preventDefault();
+            
+      $('#contenedorPrincipal').empty();
+      // Llamar a la función obtenerCursos con la acción actualizada, la nueva búsqueda y la categoría
+      obtenerCursos();
+      }); 
+          
+          obtenerCursos();
+
+          function obtenerCursos() {
+              $.ajax({
+                  url: '../Models/tarjetaCalif.php',
+                  type: 'GET',
+                  dataType: 'json',
+                  data: {                      
+                  },
+                  success: function (response) {
+                      // Utilizar los datos recibidos en el arreglo
+                      if (response && response.length > 0) {
+                          console.log(response);
+                        
+                          tarjetaCursos(response);
+                         
+                         
+                      } else {
+                          console.log("La respuesta está vacía.");
+                      }
+                  },
+                  error: function (xhr, status, error) {
+                      console.error(error);
+                      // Mostrar una alerta antes de redirigir
+                          alert('¡Oh, no! Parece que algo salió mal. Por favor, inicia sesión para continuar.');
+
+                      // Redirigir a index.html con un mensaje de no inicio de sesión
+                      
+                  }
+              });
+          }
+          
+          function tarjetaCursos(cursos) {
+              cursos.forEach(function (curso) {
+                  let costo = curso.Precio;
+                 
+                  $("#contenedorPrincipal").append(`
+                  <div class="card">
+                 
+                  <div class="card-content">
+                    <h3>Materia: ${curso.Curso}</h3>
+                    <h3>Oportunidad: ${curso.Oportunidad}</h3>
+                    <h3>Profesor: ${curso.Profesor}</h3>
+                    <h3>Primer parcial: ${curso.PrimerParcial}</h3>
+                    <h3>Segundo parcial: ${curso.SegundoParcial}</h3>
+                    <h3>Tercer parcial: ${curso.TercerParcial}</h3>
+                    <h3>Calificación final: ${curso.Promedio}</h3>
+                  </div>
+                </div>                                  
+              `);
+              });
+
+          }
+          $(window).scroll(function () {
+              if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                  pagina++;
+                  obtenerCursos(); // Carga más cursos al llegar al final de la página
+              }
+          });
+
+          
+      });
+  </script>
   </body>
 </html>
