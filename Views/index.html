@@ -193,7 +193,7 @@
                   <span class="icon">&#9993</span>
                 </div>
                 <div class="input-group">
-                  <button id="open-modal2" class="submit-button" type="">Enviar</button>
+                  <button class="submit-button" type="">Enviar</button>
                 </div>
                 
               </form>
@@ -211,7 +211,7 @@
             <h2 class="title">Recuperación de la cuenta</h2>
             <p class="para">Ingresa el código enviado a tu email para reestablecer la contresaña.</p>
           </div>
-          <form class="form" id="formRecuperacion" action="../Models/phpmailer.php" method="post">
+          <form class="form" id="formRecuperacion2" action="../Models/phpmailer2.php" method="post">
             <div class="input-group">
               <label for="" class="label-title">Ingresa el código</label>
               <!-- <input type="email" name="email" placeholder="hola@tecmilenio.com.mx">
@@ -228,7 +228,8 @@
               </div>
             </div>
             <div class="input-group">
-              <button id="open-modal3" class="submit-button" type="">Enviar</button>
+              <button class="submit-button" type="submit">Enviar</button>
+
             </div> 
           </form>
           <div class="input-group">
@@ -245,7 +246,7 @@
               <h2 class="title">Recuperación de la cuenta</h2>
               <p class="para">Bien hecho, ahora puedes restablecer tu contraseña</p>
             </div>
-            <form class="form" id="formRecuperacion" action="../Models/phpmailer.php" method="post">
+            <form class="form" id="formRecuperacion3" action="" method="post">
               <div class="input-group">
                 <label for="" class="label-title">Nueva contraseña</label>
                 <input id="inpPass3" type="password" name="password" placeholder="" required>
@@ -311,12 +312,14 @@
                 var data = JSON.parse(response);
                 document.getElementById('modal').close();
                 if(data.status === 'success') {
-                    
-                  Swal.fire({
+                    Swal.fire({
                         title: 'Éxito',
                         text: data.message,
                         icon: 'success',
                         confirmButtonText: 'Ok'
+                    }).then(function() {
+                        // Abre el modal2 después de hacer clic en 'Ok'
+                        document.getElementById('modal2').showModal();
                     });
                 } else {
                     Swal.fire({
@@ -333,6 +336,39 @@
             }
         });
     });
+    $('#formRecuperacion2').on('submit', function(e) {
+    e.preventDefault();
+    // Evita que el formulario se envíe de la manera tradicional
+    $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+         // Envía los datos del formulario
+        success: function(response) {
+            var data = JSON.parse(response);
+            if (data.status === 'success') {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: data.message,
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        },
+        error: function(xhr, status, error) {
+    console.log("Error: " + error);
+    console.log("Status: " + status);
+    console.log(xhr);
+}
+    });
+});
   });
   </script>
 </body>

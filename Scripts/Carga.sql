@@ -10,7 +10,13 @@ VALUES ('Ago-Dic 2023'), ('Ene-Jun 2024'), ('Ago-Dic 2024');
 
 -- Insertar datos en la tabla Curso
 INSERT INTO Curso (NombreCurso, Semestre, Creditos, CursoEliminado)
-VALUES ('Curso 1', 1, 3, 0), ('Curso 2', 2, 4, 0), ('Curso 3', 1, 3, 0);
+VALUES ('Graficas 2', 6, 3, 0), ('IEUW', 6, 4, 0), ('Escenarios', 6, 3, 0);
+
+INSERT INTO Curso (NombreCurso, Semestre, Creditos, CursoEliminado)
+VALUES ('BDM', 7, 3, 0), ('POI', 7, 4, 0), ('Optimizacion', 7, 3, 0);
+
+INSERT INTO Curso (NombreCurso, Semestre, Creditos, CursoEliminado)
+VALUES ('RV', 8, 3, 0), ('Web 2', 8, 4, 0), ('Procesamiento', 8, 3, 0);
 
 -- Insertar datos en la tabla CursosUsuarios
 INSERT INTO CursosUsuarios (IdCurso, IdUsuario, IdPeriodo, Calif, Observaciones, Grupo, Fecha)
