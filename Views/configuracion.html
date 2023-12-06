@@ -108,8 +108,92 @@
     <div class="container">
       <div class="content">
         <h3>Configuración</h3>
-        <p>Configuración de accesos directos, favoritos, colores y más.</p>
-      </div>
+        <p>Configuración de favoritos, colores y más.</p> 
+       </div> 
+    </div>
+    <div class="setting-container">
+      <ul class="setting-list">
+        <li>
+          <div class="toggle-container">
+            <div class="toggle-item">
+              <span class="toggle-text">Notificaciones</span>
+              <label class="toggle" for="myToggle">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle">
+                <div class="toggle__fill"></div>
+              </label>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="toggle-container">
+            <div class="toggle-item">
+              <span class="toggle-text">Modo oscuro</span>
+              <label class="toggle" for="myToggle2">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle2">
+                <div class="toggle__fill"></div>
+              </label>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="toggle-container">
+            <div class="toggle-item">
+              <span class="toggle-text">Mostrar favoritos</span>
+              <label class="toggle" for="myToggle3">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle3">
+                <div class="toggle__fill"></div>
+              </label>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <!-- esta seccion se activara si estan activos los favoritos -->
+      <ul id="shortcouts" class="setting-list">
+        <li>
+          <div class="toggle-container">
+            <div class="toggle-item">
+              <span class="toggle-text">Mis calificaciones</span>
+              <label class="toggle" for="myToggle4">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle4">
+                <div class="toggle__fill"></div>
+              </label>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="toggle-container">
+            <div class="toggle-item">
+              <span class="toggle-text">Mis cursos</span>
+              <label class="toggle" for="myToggle5">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle5">
+                <div class="toggle__fill"></div>
+              </label>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="toggle-container">
+            <div class="toggle-item">
+              <span class="toggle-text">Kardex</span>
+              <label class="toggle" for="myToggle6">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle6">
+                <div class="toggle__fill"></div>
+              </label>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="toggle-container">
+            <div class="toggle-item">
+              <span class="toggle-text">Mi correo electrónico</span>
+              <label class="toggle" for="myToggle7">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle7">
+                <div class="toggle__fill"></div>
+              </label>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
     <script src="../Controllers/sideBar.js"></script>
   </body>

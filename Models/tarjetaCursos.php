@@ -13,6 +13,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
 $user = $_SESSION['ID_usuario'] ;
+var_dump($user);
 $fecha = '2023-11-24';
 // Consulta para llamar al procedimiento almacenado según la acción y la paginación
 $query = "";

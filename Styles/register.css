@@ -73,7 +73,6 @@ section .contentBx {
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  text-transform: uppercase;
 }
 .input-box input:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
@@ -119,7 +118,6 @@ section .contentBx {
   border: none;
   color: #707070;
   font-size: 1rem;
-  text-transform: uppercase;
 }
 .formBx button {
   height: 55px;

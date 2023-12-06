@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 $servername = "127.0.0.1";
 $username = "root";
 $password = "S4l4sHir4m310100.&";
