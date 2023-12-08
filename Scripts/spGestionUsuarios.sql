@@ -31,13 +31,10 @@ BEGIN
     IF p_Accion = 'UP' THEN
         UPDATE Usuario
         SET Correo = p_Correo,
-            NombreCompleto = p_NombreCompleto,
-           
+            NombreCompleto = p_NombreCompleto,           
             FechaNacimiento = p_FechaNacimiento,
             Matricula = p_Matricula,
-            Telefono = p_Telefono,
-            
-            
+            Telefono = p_Telefono,            
             Calle = p_Calle,
             Pais = p_Pais,
             Ciudad = p_Ciudad,
@@ -66,6 +63,21 @@ BEGIN
         FROM Usuario
         WHERE Correo = p_Correo;
     END IF;
+     IF p_Accion = 'SE3' THEN
+        SELECT
+		NombreAlumno,
+		Matricula,
+		PromedioTotal,
+		IdCurso,
+		Creditos,
+		NombreMateria,
+		Promedio1erParcial,
+		Promedio2doParcial,
+		Promedio3erParcial		
+        FROM viKardex
+        WHERE IdUsuario = p_ID_usuario;
+    END IF;
+   
 END //
 
 DELIMITER ;

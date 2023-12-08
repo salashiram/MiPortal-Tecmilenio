@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../Styles/home.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/introjs.min.css">
     <title>Home</title>
   </head>
   <body>
@@ -53,6 +54,7 @@
     
     <script src="../Controllers/sideBar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/intro.min.js"></script>
     <script>
       $(document).ready(function() {
         obtenerMenu()
@@ -83,6 +85,27 @@
             console.error(error);
           }
         });
+
+        introJs().setOptions({
+                steps: [
+                    {
+                        intro: "Bienvenido a tu nuevo portal. ¡Vamos a realizar un tour rápido!"
+                    },
+                    {
+                        element: document.querySelector('.navbar'),
+                        intro: "Esta es la barra de navegación principal."
+                    },
+                    {
+                        element: document.querySelector('#sidebar'),
+                        intro: "Aquí puedes encontrar diferentes secciones."
+                    },
+                    {
+                        element: document.querySelector('.content'),
+                        intro: "Y este es el área principal de contenido."
+                    }
+                    // ... más pasos ...
+                ]
+            }).start();
        
     function obtenerMenu() {
       $.ajax({
