@@ -55,18 +55,25 @@ if (isset($_POST['usuario']) && isset($_POST['pass'])) {
                 $_SESSION['ciudad'] = $row['Ciudad'];
                 $_SESSION['cp'] = $row['CP'];
                 
+                $response['status'] = 'success'; // Estado de la respuesta
+                $response['message'] = 'Inicio de sesión exitoso';
                 
-                header("Location: ../Views/home.html");
-                exit();
+                
             
         } else {
             // Inicio de sesión fallido
             
-            $error_message = "Credenciales incorrectas";
-            header("Location: ../Views/index.html?error=" . urlencode($error_message));
-            exit();
+            $response['status'] = 'error'; // Estado de la respuesta
+            $response['message'] = 'Credenciales incorrectas';
         }
     
+}else {
+    // Datos de inicio de sesión no proporcionados
+    $response['status'] = 'error'; // Estado de la respuesta
+    $response['message'] = 'Por favor, proporciona usuario y contraseña';
 }
 $conn->close();
+header('Content-Type: application/json');
+echo json_encode($response);
+
 ?>

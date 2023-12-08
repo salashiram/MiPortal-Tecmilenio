@@ -4,7 +4,7 @@
 // error_reporting(E_ALL);
 require_once 'conexion.php';
 require '../vendor/autoload.php';
-
+header('Content-Type: application/json');
 $usuarioExistente = 0;
 
 
@@ -38,25 +38,29 @@ if($_POST){
     $ciudad = $_POST['ciudad'];
     $cp = $_POST['cp'];
     
-    }
+    
 
     $query = "CALL spVerificarUsuario('$correo', @usuarioExistente)";
     $result = mysqli_query($conn, $query);
     if (!$result) {
-        die("Error al ejecutar la consulta: " . mysqli_error($conn));
+        echo json_encode(['success' => false, 'message' => 'Error al ejecutar la consulta: ' . mysqli_error($conn)]);
+        exit();
     }
 
     $query = "SELECT @usuarioExistente";
     $result = mysqli_query($conn, $query);
     if (!$result) {
-        die("Error al ejecutar la consulta: " . mysqli_error($conn));
+        echo json_encode(['success' => false, 'message' => 'Error al ejecutar la consulta: ' . mysqli_error($conn)]);
+        exit();
     }
 
     $row = mysqli_fetch_array($result);
     $usuarioExistente = $row[0];
    
     if ($usuarioExistente > 0) {
-        echo "El usuario ya existe. Por favor, elige otro nombre de usuario.";
+        
+        echo json_encode(['success' => true, 'message' => 'error']);
+        exit();
     } else {
         
             $query = "CALL spGestionUsuarios('IN','1','$correo','$nombre','$contraseña','$fechaNac','$matricula','$telefono','$fechaNac','$rol','$domicilio','$pais','$ciudad','$cp','0')";
@@ -64,6 +68,7 @@ if($_POST){
             if (!$result) {
                 // Enviar respuesta de error
                 echo json_encode(['success' => false, 'message' => 'Error al ejecutar la consulta: ' . mysqli_error($conn)]);
+                exit();
             } else {
 
                 $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -137,26 +142,21 @@ if($_POST){
                 </html>';
                 try {
                     $mail->send();
-                    $response = ['status' => 'success', 'message' => 'Mensaje enviado'];
+                    echo json_encode(['success' => true, 'message' => 'Registro exitoso']);
                 } catch (Exception $e) {
-                    $response = ['status' => 'error', 'message' => 'El mensaje no se pudo enviar. Error: ' . $mail->ErrorInfo];
+                    echo json_encode(['success' => false, 'message' => 'El mensaje no se pudo enviar. Error: ' . $mail->ErrorInfo]);
                 }
+                exit();
                 // Enviar respuesta de éxito
-                echo json_encode(['success' => true, 'message' => 'Registro exitoso, ara ara~']);
+               
             }
-            exit();
+            
         
     }
 
-// Verificar si la consulta se ejecutó correctamente
 
-
-// Recibir los datos de regreso
-// while ($row = mysqli_fetch_assoc($result)) {
-//     // Hacer algo con los datos
-//     echo $row['campo'];
-// }
-
-// Cerrar la conexión
+}else{
+    echo json_encode(['success' => false, 'message' => 'No se recibieron datos POST']);
+}
 mysqli_close($conn);
 ?>
