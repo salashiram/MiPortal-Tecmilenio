@@ -86,26 +86,7 @@
           }
         });
 
-        introJs().setOptions({
-                steps: [
-                    {
-                        intro: "Bienvenido a tu nuevo portal. ¡Vamos a realizar un tour rápido!"
-                    },
-                    {
-                        element: document.querySelector('.navbar'),
-                        intro: "Esta es la barra de navegación principal."
-                    },
-                    {
-                        element: document.querySelector('#sidebar'),
-                        intro: "Aquí puedes encontrar diferentes secciones."
-                    },
-                    {
-                        element: document.querySelector('.content'),
-                        intro: "Y este es el área principal de contenido."
-                    }
-                    // ... más pasos ...
-                ]
-            }).start();
+        
        
     function obtenerMenu() {
       $.ajax({
@@ -113,6 +94,63 @@
           success: function (response) {
               // Actualizar el contenido del menú
               $('#sidebar').html(response);
+
+              introJs().setOptions({
+            steps: [
+                {
+                    intro: "Bienvenido a tu nuevo portal. ¡Vamos a realizar un tour rápido!"
+                },
+                {
+                    element: document.querySelector('#sidebarOpen'),
+                    intro: "Este es el botón para expandir o colapsar la barra lateral."
+                },
+                {
+                        element: document.querySelector('#sidebar'),
+                        intro: "Aquí puedes encontrar diferentes secciones."
+                    },
+                {
+                    element: document.querySelector('#homeButton'),
+                    intro: "Haz clic aquí para ir a la página principal."
+                },
+                {
+                    element: document.querySelector('#gradesButton'),
+                    intro: "Aquí puedes ver tus calificaciones."
+                },
+                {
+                    element: document.querySelector('#coursesButton'),
+                    intro: "Explora los cursos en los que estás inscrito aquí."
+                },
+                {
+                    element: document.querySelector('#settingsButton'),
+                    intro: "Configura tu perfil y preferencias desde esta sección."
+                },
+                {
+                    element: document.querySelector('#seeAllButton'),
+                    intro: "Encuentra más opciones disponibles para ti aquí."
+                },
+                {
+                        element: document.querySelector('#profileImage'),
+                        intro: "Esta es tu imagen de perfil, aquí puedes ver tu perfil completo."
+                    },
+                {
+                    element: document.querySelector('#logoutButton'),
+                    intro: "Cuando termines, puedes cerrar sesión aquí."
+                },
+               
+                    {
+                        element: document.querySelector('.content'),
+                        intro: "Y este es el área principal de contenido."
+                    }
+                // ... más pasos ...
+            ],
+            exitOnOverlayClick: false,
+            hidePrev: true,
+            hideNext: true,
+            nextLabel: 'Siguiente',
+            prevLabel: 'Anterior',
+            skipLabel: 'Saltar',
+            doneLabel: 'Terminar'
+        }).start();
           },
           error: function () {
               // Manejar errores en la solicitud AJAX
