@@ -20,6 +20,7 @@
     />
     <link rel="stylesheet" href="../Styles/side-bar.css">
     <link rel="stylesheet" href="../Styles/configuracion.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Configuración</title>
   </head>
   <body>
@@ -28,82 +29,8 @@
         <i class="bx bx-menu" id="sidebarOpen"></i>
       </div>
     </nav>
-    <nav class="sidebar">
-      <div class="menu_content">
-        <ul class="menu_items">
-          <li class="menu_item">
-            <a href="../Views/home.html" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-home"></i>
-              </span>
-              <span class="navlink">Home</span>
-            </a>
-          </li>
-          <li class="menu_item">
-            <a href="../Views/misCalificaciones.html" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-cloud-upload"></i>
-              </span>
-              <span class="navlink">Mis calificaciones</span>
-            </a>
-          </li>
-          <li class="menu_item">
-            <a href="../Views/misCursos.html" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-cloud-upload"></i>
-              </span>
-              <span class="navlink">Mis cursos</span>
-            </a>
-          </li>
-          <li class="menu_item">
-            <a href="../Views/configuracion.html" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-cog"></i>
-              </span>
-              <span class="navlink">Settings</span>
-            </a>
-          </li>
-          <li class="menu_item">
-            <a href="../Views/moreOptions.html" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-cog"></i>
-              </span>
-              <span class="navlink">Ver todo</span>
-            </a>
-          </li>
-          <div class="bottom-content">
-          <!-- user profile  -->
-          <div class="profile_section">
-            <div class="profile_info">
-              <a href="../Views/userProfile.html">
-                <img src="../Resources/Profile-pics/kimson-doan-HD8KlyWRYYM-unsplash.jpg" alt="Imagen de perfil" class="profile_image">
-              </a>
-              <!-- <p class="user-name" id="correo"></p> -->
-            </div>
-          </div>
-          <!-- Cerrar sesión -->
-          <div class="logout-container">
-            <li class="menu_item">
-              <a href="#" id="logoutButton" class="nav_link">
-                <span class="navlink_icon">
-                  <i class="bx bx-log-out"></i>
-                </span>
-                <span class="navlink">Cerrar sesión</span>
-              </a>
-            </li>
-          </div>
-          </div>
-        <div class="collapse_content">
-          <div class="collapse expand_sidebar">
-            <span></span>
-            <i class="bx bx-chevron-right"></i>
-          </div>
-          <div class="collapse collapse_sidebar">
-            <span></span>
-            <i class="bx bx-chevron-left"></i>
-          </div>
-        </div>
-      </div>
+    <nav class="sidebar" id="sidebar">
+      
     </nav>
     <div class="container">
       <div class="content">
@@ -196,5 +123,50 @@
       </ul>
     </div>
     <script src="../Controllers/sideBar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function () {
+      obtenerMenu()
+
+      $('#sidebar').on('click', '#logoutButton', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '../Models/logout.php',
+            success: function(response) {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: 'Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = './index.html';
+                    }
+                });
+            },
+            error: function() {
+                alert('Error al cerrar sesión');
+            }
+        });
+    });
+
+    function obtenerMenu() {
+      $.ajax({
+          url: '../Models/menu.php',
+          success: function (response) {
+              // Actualizar el contenido del menú
+              $('#sidebar').html(response);
+          },
+          error: function () {
+              // Manejar errores en la solicitud AJAX
+              console.log('Error al obtener el menú');
+          }
+          });
+      }
+    });
+
+</script>
   </body>
 </html>
