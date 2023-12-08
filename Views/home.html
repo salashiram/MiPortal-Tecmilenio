@@ -18,182 +18,333 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../Styles/side-bar.css">
-    <link rel="stylesheet" href="../Styles/home.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="../Styles/side-bar.css" />
+    <link rel="stylesheet" href="../Styles/home.css" />
+    <link rel="stylesheet" href="../Styles/eventWidget.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/introjs.min.css">
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/introjs.min.css"
+    />
     <title>Home</title>
   </head>
   <body>
+    <!-- side bar -->
     <nav class="navbar">
       <div class="logo">
         <i class="bx bx-menu" id="sidebarOpen"></i>
       </div>
     </nav>
-    <nav class="sidebar" id="sidebar">
-      
-    </nav>
+    <nav class="sidebar" id="sidebar"></nav>
     <div class="container">
       <div class="content">
         <h3>Home</h3>
         <p>Hola,<span class="full-name" id="nombre"></span></p>
       </div>
-      
-      <div class="content"id="promedioGeneralWidget">
-        <h3>Promedio General</h3>
-        <span id="promedioGeneral">--</span>
-      </div>
-    
-      
     </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-    
+    <div class="shortcouts">
+      <div class="short-content">
+        <ul>
+          <li><a href="#events">Próximos eventos</a></li>
+          <li><a href="">Últimas noticias</a></li>
+          <li><a href="">Resultados parciales</a></li>
+          <li><a href="">Acerca de</a></li>
+        </ul>
+      </div>
+    </div>
     <script src="../Controllers/sideBar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/intro.min.js"></script>
     <script>
-      $(document).ready(function() {
-        obtenerMenu()
+      $(document).ready(function () {
+        obtenerMenu();
         $.ajax({
-          url: '../Models/perfil.php',
-          type: 'GET',
-          dataType: 'json',
+          url: "../Models/perfil.php",
+          type: "GET",
+          dataType: "json",
           statusCode: {
-            302: function() {
+            302: function () {
               // Redirigir al usuario a la página de inicio
-              window.location.href = './index.html';
-            }
-          },
-          success: function(response) {
-            
-            $('#matricula').text(response.matricula);
-            $('#pais').text(response.pais);
-            $('#ciudad').text(response.ciudad);
-            $('#fecha_nacimiento').text(response.fecha_nacimiento);
-            $('#calle').text(response.calle);
-            $('#telefono').text(response.telefono);
-            $('#nombre').text(response.nombre);
-           
-            $('#correo').text(response.correo);
-          },
-          error: function(xhr, status, error) {
-            
-            console.error(error);
-          }
-        });
-
-        
-       
-    function obtenerMenu() {
-      $.ajax({
-          url: '../Models/menu.php',
-          success: function (response) {
-              // Actualizar el contenido del menú
-              $('#sidebar').html(response);
-
-              introJs().setOptions({
-            steps: [
-                {
-                    intro: "Bienvenido a tu nuevo portal. ¡Vamos a realizar un tour rápido!"
-                },
-                {
-                    element: document.querySelector('#sidebarOpen'),
-                    intro: "Este es el botón para expandir o colapsar la barra lateral."
-                },
-                {
-                        element: document.querySelector('#sidebar'),
-                        intro: "Aquí puedes encontrar diferentes secciones."
-                    },
-                {
-                    element: document.querySelector('#homeButton'),
-                    intro: "Haz clic aquí para ir a la página principal."
-                },
-                {
-                    element: document.querySelector('#gradesButton'),
-                    intro: "Aquí puedes ver tus calificaciones."
-                },
-                {
-                    element: document.querySelector('#coursesButton'),
-                    intro: "Explora los cursos en los que estás inscrito aquí."
-                },
-                {
-                    element: document.querySelector('#settingsButton'),
-                    intro: "Configura tu perfil y preferencias desde esta sección."
-                },
-                {
-                    element: document.querySelector('#seeAllButton'),
-                    intro: "Encuentra más opciones disponibles para ti aquí."
-                },
-                {
-                        element: document.querySelector('#profileImage'),
-                        intro: "Esta es tu imagen de perfil, aquí puedes ver tu perfil completo."
-                    },
-                {
-                    element: document.querySelector('#logoutButton'),
-                    intro: "Cuando termines, puedes cerrar sesión aquí."
-                },
-               
-                    {
-                        element: document.querySelector('.content'),
-                        intro: "Y este es el área principal de contenido."
-                    }
-                // ... más pasos ...
-            ],
-            exitOnOverlayClick: false,
-            hidePrev: true,
-            hideNext: true,
-            nextLabel: 'Siguiente',
-            prevLabel: 'Anterior',
-            skipLabel: 'Saltar',
-            doneLabel: 'Terminar'
-        }).start();
-          },
-          error: function () {
-              // Manejar errores en la solicitud AJAX
-              console.log('Error al obtener el menú');
-          }
-      });
-
-      $('#sidebar').on('click', '#logoutButton', function(e) {
-        e.preventDefault();
-
-        $.ajax({
-            type: 'POST',
-            url: '../Models/logout.php',
-            success: function(response) {
-                Swal.fire({
-                    title: 'Éxito',
-                    text: 'Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location.href = './index.html';
-                    }
-                });
+              window.location.href = "./index.html";
             },
-            error: function() {
-                alert('Error al cerrar sesión');
-            }
+          },
+          success: function (response) {
+            $("#matricula").text(response.matricula);
+            $("#pais").text(response.pais);
+            $("#ciudad").text(response.ciudad);
+            $("#fecha_nacimiento").text(response.fecha_nacimiento);
+            $("#calle").text(response.calle);
+            $("#telefono").text(response.telefono);
+            $("#nombre").text(response.nombre);
+
+            $("#correo").text(response.correo);
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+          },
         });
-    });
+        function obtenerMenu() {
+          $.ajax({
+            url: "../Models/menu.php",
+            success: function (response) {
+              // Actualizar el contenido del menú
+              $("#sidebar").html(response);
 
-    }
+              introJs()
+                .setOptions({
+                  steps: [
+                    {
+                      intro:
+                        "Bienvenido a tu nuevo portal. ¡Vamos a realizar un tour rápido!",
+                    },
+                    {
+                      element: document.querySelector("#sidebarOpen"),
+                      intro:
+                        "Este es el botón para expandir o colapsar la barra lateral.",
+                    },
+                    {
+                      element: document.querySelector("#sidebar"),
+                      intro: "Aquí puedes encontrar diferentes secciones.",
+                    },
+                    {
+                      element: document.querySelector("#homeButton"),
+                      intro: "Haz clic aquí para ir a la página principal.",
+                    },
+                    {
+                      element: document.querySelector("#gradesButton"),
+                      intro: "Aquí puedes ver tus calificaciones.",
+                    },
+                    {
+                      element: document.querySelector("#coursesButton"),
+                      intro:
+                        "Explora los cursos en los que estás inscrito aquí.",
+                    },
+                    {
+                      element: document.querySelector("#settingsButton"),
+                      intro:
+                        "Configura tu perfil y preferencias desde esta sección.",
+                    },
+                    {
+                      element: document.querySelector("#seeAllButton"),
+                      intro: "Encuentra más opciones disponibles para ti aquí.",
+                    },
+                    {
+                      element: document.querySelector("#profileImage"),
+                      intro:
+                        "Esta es tu imagen de perfil, aquí puedes ver tu perfil completo.",
+                    },
+                    {
+                      element: document.querySelector("#logoutButton"),
+                      intro: "Cuando termines, puedes cerrar sesión aquí.",
+                    },
+
+                    {
+                      element: document.querySelector(".content"),
+                      intro: "Y este es el área principal de contenido.",
+                    },
+                    // ... más pasos ...
+                  ],
+                  exitOnOverlayClick: false,
+                  hidePrev: true,
+                  hideNext: true,
+                  nextLabel: "Siguiente",
+                  prevLabel: "Anterior",
+                  skipLabel: "Saltar",
+                  doneLabel: "Terminar",
+                })
+                .start();
+            },
+            error: function () {
+              // Manejar errores en la solicitud AJAX
+              console.log("Error al obtener el menú");
+            },
+          });
+          $("#sidebar").on("click", "#logoutButton", function (e) {
+            e.preventDefault();
+
+            $.ajax({
+              type: "POST",
+              url: "../Models/logout.php",
+              success: function (response) {
+                Swal.fire({
+                  title: "Éxito",
+                  text: "Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.",
+                  icon: "success",
+                  confirmButtonText: "Ok",
+                }).then((result) => {
+                  if (result.value) {
+                    window.location.href = "./index.html";
+                  }
+                });
+              },
+              error: function () {
+                alert("Error al cerrar sesión");
+              },
+            });
+          });
+        }
       });
-
-      
     </script>
+    <!-- widget para eventos proximos start -->
+    <section class="widgets">
+      <div class="widget-title">
+        <a id="events" href="">Próximos eventos</a>
+      </div>
+      <div class="widget-content">
+        <div class="card-container">
+          <!-- card starts -->
+          <div class="item-container">
+            <div class="img-container">
+              <img src="../Resources/class1.jpg" alt="Event image" />
+            </div>
+            <div class="body-container">
+              <div class="overlay"></div>
+              <div class="event-info">
+                <!-- nombre del curso  -->
+                <p class="title">Programación web 1</p>
+                <div class="separator"></div>
+                <!-- Modalidad de la clase -->
+                <p class="info">En línea</p>
+                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
+                <p class="price">Virtual</p>
+                <div class="additional-info">
+                  <p class="info">
+                    <!-- Locacion del evento, deberia de mostrar el campus -->
+                    <i class="fas fa-map-marker-alt"></i>
+                    San Nicolás de los Garza
+                  </p>
+                  <p class="info">
+                    <!-- Fecha y hora del evento en cuestion -->
+                    <i class="far fa-calendar-alt"></i>
+                    Sat, Dic 9, 10:00 AM EDT
+                  </p>
+                  <!-- descripcion del evento -->
+                  <p class="info description">
+                    Descripción del evento
+                    <span><a href="#">Más...</a></span>
+                  </p>
+                </div>
+              </div>
+              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
+              <button class="action">Ver más</button>
+            </div>
+          </div>
+          <!-- card ends -->
+          <div class="item-container">
+            <div class="img-container">
+              <img src="../Resources/class1.jpg" alt="Event image" />
+            </div>
+            <div class="body-container">
+              <div class="overlay"></div>
+              <div class="event-info">
+                <!-- nombre del curso  -->
+                <p class="title">Programación web 1</p>
+                <div class="separator"></div>
+                <!-- Modalidad de la clase -->
+                <p class="info">En línea</p>
+                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
+                <p class="price">Virtual</p>
+                <div class="additional-info">
+                  <p class="info">
+                    <!-- Locacion del evento, deberia de mostrar el campus -->
+                    <i class="fas fa-map-marker-alt"></i>
+                    San Nicolás de los Garza
+                  </p>
+                  <p class="info">
+                    <!-- Fecha y hora del evento en cuestion -->
+                    <i class="far fa-calendar-alt"></i>
+                    Sat, Dic 9, 10:00 AM EDT
+                  </p>
+                  <!-- descripcion del evento -->
+                  <p class="info description">
+                    Descripción del evento
+                    <span><a href="#">Más...</a></span>
+                  </p>
+                </div>
+              </div>
+              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
+              <button class="action">Ver más</button>
+            </div>
+          </div>
+          <div class="item-container">
+            <div class="img-container">
+              <img src="../Resources/class1.jpg" alt="Event image" />
+            </div>
+            <div class="body-container">
+              <div class="overlay"></div>
+              <div class="event-info">
+                <!-- nombre del curso  -->
+                <p class="title">Programación web 1</p>
+                <div class="separator"></div>
+                <!-- Modalidad de la clase -->
+                <p class="info">En línea</p>
+                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
+                <p class="price">Virtual</p>
+                <div class="additional-info">
+                  <p class="info">
+                    <!-- Locacion del evento, deberia de mostrar el campus -->
+                    <i class="fas fa-map-marker-alt"></i>
+                    San Nicolás de los Garza
+                  </p>
+                  <p class="info">
+                    <!-- Fecha y hora del evento en cuestion -->
+                    <i class="far fa-calendar-alt"></i>
+                    Sat, Dic 9, 10:00 AM EDT
+                  </p>
+                  <!-- descripcion del evento -->
+                  <p class="info description">
+                    Descripción del evento
+                    <span><a href="#">Más...</a></span>
+                  </p>
+                </div>
+              </div>
+              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
+              <button class="action">Ver más</button>
+            </div>
+          </div>
+          <div class="item-container">
+            <div class="img-container">
+              <img src="../Resources/class1.jpg" alt="Event image" />
+            </div>
+            <div class="body-container">
+              <div class="overlay"></div>
+              <div class="event-info">
+                <!-- nombre del curso  -->
+                <p class="title">Programación web 1</p>
+                <div class="separator"></div>
+                <!-- Modalidad de la clase -->
+                <p class="info">En línea</p>
+                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
+                <p class="price">Virtual</p>
+                <div class="additional-info">
+                  <p class="info">
+                    <!-- Locacion del evento, deberia de mostrar el campus -->
+                    <i class="fas fa-map-marker-alt"></i>
+                    San Nicolás de los Garza
+                  </p>
+                  <p class="info">
+                    <!-- Fecha y hora del evento en cuestion -->
+                    <i class="far fa-calendar-alt"></i>
+                    Sat, Dic 9, 10:00 AM EDT
+                  </p>
+                  <!-- descripcion del evento -->
+                  <p class="info description">
+                    Descripción del evento
+                    <span><a href="#">Más...</a></span>
+                  </p>
+                </div>
+              </div>
+              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
+              <button class="action">Ver más</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- widget para eventos proximos ends -->
   </body>
 </html>
