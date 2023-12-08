@@ -81,7 +81,7 @@
             <div class="toggle-item">
               <span class="toggle-text">Mis calificaciones</span>
               <label class="toggle" for="myToggle4">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle4">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle4" checked>
                 <div class="toggle__fill"></div>
               </label>
             </div>
@@ -92,7 +92,7 @@
             <div class="toggle-item">
               <span class="toggle-text">Mis cursos</span>
               <label class="toggle" for="myToggle5">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle5">
+                <input class="toggle__input" name="" type="checkbox" id="myToggle5" checked>
                 <div class="toggle__fill"></div>
               </label>
             </div>
@@ -152,19 +152,38 @@
         });
     });
 
+    $('.toggle__input').change(function() {
+        var toggleId = $(this).attr('id');
+        var toggleState = $(this).is(':checked');
+        $.ajax({
+            type: 'POST',
+            url: '../Models/manejarToggle.php',
+            data: {
+                toggle: toggleId,
+                state: toggleState
+            },
+            success: function(response) {
+                
+                obtenerMenu();
+            },
+            error: function() {
+                alert('Error al cambiar el estado del toggle');
+            }
+        });
+    });
+
     function obtenerMenu() {
-      $.ajax({
-          url: '../Models/menu.php',
-          success: function (response) {
-              // Actualizar el contenido del menú
-              $('#sidebar').html(response);
-          },
-          error: function () {
-              // Manejar errores en la solicitud AJAX
-              console.log('Error al obtener el menú');
-          }
-          });
-      }
+    $.ajax({
+        url: '../Models/menu.php',
+        success: function (response) {
+            $('#sidebar').html(response);
+        },
+        error: function () {
+            console.log('Error al obtener el menú');
+        }
+    });
+}
+
     });
 
 </script>
