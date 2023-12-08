@@ -30,7 +30,9 @@ SET @IdPeriodo = (SELECT IdPeriodo FROM Periodo WHERE NombrePeriodo = 'Ago-Dic 2
 INSERT INTO CursosUsuarios (IdCurso, IdUsuario, IdPeriodo, PrimerParcial, SegundoParcial, TercerParcial, Oportunidad, Profesor, Modalidad, Aula, Observaciones, Grupo, Fecha)
 VALUES 
 ((SELECT IdCurso FROM Curso WHERE NombreCurso = 'Graficas 2'), 2, 1, 50, 80, 80, 1, 'Profesor X', 1, 'Aula 101', 'Ninguna', 101, NOW()),
-((SELECT IdCurso FROM Curso WHERE NombreCurso = 'IEUW'), 2, 1, 30, 100, 90, 3, 'Profesor Y', 0, 'Virtual', 'Ninguna', 102, NOW()),
+((SELECT IdCurso FROM Curso WHERE NombreCurso = 'IEUW'), 2, 1, 30, 10, 20, 1, 'Profesor Y', 0, 'Virtual', 'Ninguna', 102, NOW()),
+((SELECT IdCurso FROM Curso WHERE NombreCurso = 'IEUW'), 2, 1, 30, 100, 40, 2, 'Profesor Y', 0, 'Virtual', 'Ninguna', 102, NOW()),
+((SELECT IdCurso FROM Curso WHERE NombreCurso = 'IEUW'), 2, 1, 70, 100, 90, 3, 'Profesor Y', 0, 'Virtual', 'Ninguna', 102, NOW()),
 ((SELECT IdCurso FROM Curso WHERE NombreCurso = 'Escenarios'), 2, 1, 90, 55, 60, 1, 'Profesor Z', 1, 'Aula 103', 'Ninguna', 103, NOW()),
 ((SELECT IdCurso FROM Curso WHERE NombreCurso = 'BDM'), 2, 1, 100, 55, 100, 1, 'Profesor A', 1, 'Aula 104', 'Ninguna', 104, NOW()),
 ((SELECT IdCurso FROM Curso WHERE NombreCurso = 'POI'), 2, 1, 74, 74, 74, 1, 'Profesor B', 0, 'Virtual', 'Ninguna', 105, NOW());

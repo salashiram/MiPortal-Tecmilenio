@@ -39,119 +39,15 @@
       </div>
     </div>
     <div class="kardex-container">
-      <div class="kardex-content">
-        <ul>
-          <li><p>Nombre</p> <span id="name">Humberto Hiram Salas Tenorio</span></li>
-          <li><p>Promedio</p><span id="prom">98.56</span></li>
-          <li><p>Matricula</p><span id="mat">1806610</span></li>
-          <li><p>Campus</p><span id="Campus">San Nicolas de los Garza</span></li>
-        </ul>
+      <div class="kardex-content" id="contenedorKardex">
+            
       </div>
     </div>
     <div class="container2">
-      <div class="content2">
-        <table>
-          <thead>
-              <tr class="circle">
-                  <th>Clave</th>
-                  <th>Creditos</th>
-                  <th>Materia</th>
-                  <th>1 opo</th>
-                  <th>2 opo</th>
-                  <th>3 opo</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-          </tbody>
-      </table>
+      <div class="content2" >
+        <table id="contenedorPrincipal">
+
+        </table>
       </div>
     </div>
     <div class="container2">
@@ -162,7 +58,7 @@
     <script>
       $(document).ready(function () {
         obtenerMenu()
-
+        obtenerCursos();
         $('#sidebar').on('click', '#logoutButton', function(e) {
         e.preventDefault();
 
@@ -186,6 +82,112 @@
             }
         });
     });
+
+    function obtenerCursos() {
+              $.ajax({
+                  url: '../Models/tarjetaKardex.php',
+                  type: 'GET',
+                  dataType: 'json',
+                  data: {                      
+                  },
+                  success: function (response) {
+                      // Utilizar los datos recibidos en el arreglo
+                      if (response && response.length > 0) {
+                          console.log(response);
+                        
+                          tarjetaCursos(response);
+                         
+                         
+                      } else {
+                          console.log("La respuesta está vacía.");
+                      }
+                  },
+                  error: function (xhr, status, error) {
+                      console.error(error);
+                      // Mostrar una alerta antes de redirigir
+                          alert('¡Oh, no! Parece que algo salió mal. Por favor, inicia sesión para continuar.');
+
+                      // Redirigir a index.html con un mensaje de no inicio de sesión
+                      
+                  }
+              });
+          }
+          
+          function tarjetaCursos(cursos) {
+
+           
+
+              $("#contenedorPrincipal").append(`                 
+                  <thead>
+                      <tr class="circle">
+                          <th>Clave</th>
+                          <th>Semestre</th>
+                          <th>Creditos</th>
+                          <th>Materia</th>
+                          <th>1 opo</th>
+                          <th>2 opo</th>
+                          <th>3 opo</th>
+                      </tr>
+                  </thead>                                               
+              `);
+
+              $("#contenedorKardex").append(`                 
+              <ul>
+                <li><p>Nombre</p> <span id="name">${cursos[0].NombreAlumno}</span></li>
+                <li><p>Promedio</p><span id="prom">${cursos[0].PromedioTotal}</span></li>
+                <li><p>Matricula</p><span id="mat">${cursos[0].Matricula}</span></li>
+                <li><p>Campus</p><span id="Campus">San Nicolas de los Garza</span></li>
+              </ul>                                               
+              `);
+
+              cursos.forEach(function (curso) {
+                  
+                 if(curso.Oportunidad === '1'){
+                  $("#contenedorPrincipal").append(`                
+                  <tbody>
+                      <tr>
+                        <td>${curso.IdCurso}</td>
+                        <td>${curso.Semestre}</td>
+                        <td>${curso.Creditos}</td>
+                        <td>${curso.NombreMateria}</td>
+                        <td>${curso.Promedio}</td>
+                        <td> </td>
+                        <td> </td>
+                      </tr>                      
+                  </tbody>                                             
+              `);
+                }else if(curso.Oportunidad === '2'){
+                  $("#contenedorPrincipal").append(`                
+                  <tbody>
+                      <tr>
+                        <td>${curso.IdCurso}</td>
+                        <td>${curso.Semestre}</td>
+                        <td>${curso.Creditos}</td>
+                        <td>${curso.NombreMateria}</td>
+                        <td> </td>
+                        <td>${curso.Promedio}</td>
+                        <td> </td>
+                      </tr>                      
+                  </tbody>                                             
+              `);
+                }else if(curso.Oportunidad === '3'){
+                  $("#contenedorPrincipal").append(`                
+                  <tbody>
+                      <tr>
+                        <td>${curso.IdCurso}</td>
+                        <td>${curso.Semestre}</td>
+                        <td>${curso.Creditos}</td>
+                        <td>${curso.NombreMateria}</td>
+                        <td> </td>
+                        <td> </td>
+                        <td>${curso.Promedio}</td>
+                      </tr>                      
+                  </tbody>                                             
+              `);
+                }
+              });
+
+          }
 
       function obtenerMenu() {
         $.ajax({

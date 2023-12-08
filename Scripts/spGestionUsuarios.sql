@@ -64,19 +64,23 @@ BEGIN
         WHERE Correo = p_Correo;
     END IF;
      IF p_Accion = 'SE3' THEN
-        SELECT
-		NombreAlumno,
-		Matricula,
-		PromedioTotal,
-		IdCurso,
-		Creditos,
-		NombreMateria,
-		Promedio1erParcial,
-		Promedio2doParcial,
-		Promedio3erParcial		
-        FROM viKardex
-        WHERE IdUsuario = p_ID_usuario;
-    END IF;
+    SELECT
+        vk.NombreAlumno,
+        vk.Matricula,
+        vkt.PromedioTotal,
+        vk.IdCurso,
+        vk.Creditos,
+        vk.NombreMateria,
+        vk.Semestre,
+        vk.Promedio,
+        vk.Oportunidad
+    FROM 
+        viKardex vk
+    JOIN 
+        viKardexTotal vkt ON vk.IdUsuario = vkt.IdUsuario
+    WHERE 
+        vk.IdUsuario = p_ID_usuario;
+END IF;
    
 END //
 
