@@ -105,3 +105,53 @@ html {
   border-right: 1px solid #ccc;
   padding-right: 10px;
 }
+
+.widget-calf {
+  width: 80%;
+  margin: 0 auto; /* Centrar horizontalmente */
+  margin-top: 50px;
+}
+.calf-content {
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: 15px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.news-container {
+  width: 80%;
+  margin: 0 auto; /* Centrar horizontalmente */
+  margin-top: 50px;
+}
+.news-content {
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: 15px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.about-section {
+  width: 80%;
+  margin: 0 auto; /* Centrar horizontalmente */
+  margin-top: 50px;
+}
+.about-content {
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: 15px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
