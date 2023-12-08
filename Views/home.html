@@ -56,139 +56,6 @@
         </ul>
       </div>
     </div>
-    <script src="../Controllers/sideBar.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/intro.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        obtenerMenu();
-        $.ajax({
-          url: "../Models/perfil.php",
-          type: "GET",
-          dataType: "json",
-          statusCode: {
-            302: function () {
-              // Redirigir al usuario a la página de inicio
-              window.location.href = "./index.html";
-            },
-          },
-          success: function (response) {
-            $("#matricula").text(response.matricula);
-            $("#pais").text(response.pais);
-            $("#ciudad").text(response.ciudad);
-            $("#fecha_nacimiento").text(response.fecha_nacimiento);
-            $("#calle").text(response.calle);
-            $("#telefono").text(response.telefono);
-            $("#nombre").text(response.nombre);
-
-            $("#correo").text(response.correo);
-          },
-          error: function (xhr, status, error) {
-            console.error(error);
-          },
-        });
-        function obtenerMenu() {
-          $.ajax({
-            url: "../Models/menu.php",
-            success: function (response) {
-              // Actualizar el contenido del menú
-              $("#sidebar").html(response);
-
-              introJs()
-                .setOptions({
-                  steps: [
-                    {
-                      intro:
-                        "Bienvenido a tu nuevo portal. ¡Vamos a realizar un tour rápido!",
-                    },
-                    {
-                      element: document.querySelector("#sidebarOpen"),
-                      intro:
-                        "Este es el botón para expandir o colapsar la barra lateral.",
-                    },
-                    {
-                      element: document.querySelector("#sidebar"),
-                      intro: "Aquí puedes encontrar diferentes secciones.",
-                    },
-                    {
-                      element: document.querySelector("#homeButton"),
-                      intro: "Haz clic aquí para ir a la página principal.",
-                    },
-                    {
-                      element: document.querySelector("#gradesButton"),
-                      intro: "Aquí puedes ver tus calificaciones.",
-                    },
-                    {
-                      element: document.querySelector("#coursesButton"),
-                      intro:
-                        "Explora los cursos en los que estás inscrito aquí.",
-                    },
-                    {
-                      element: document.querySelector("#settingsButton"),
-                      intro:
-                        "Configura tu perfil y preferencias desde esta sección.",
-                    },
-                    {
-                      element: document.querySelector("#seeAllButton"),
-                      intro: "Encuentra más opciones disponibles para ti aquí.",
-                    },
-                    {
-                      element: document.querySelector("#profileImage"),
-                      intro:
-                        "Esta es tu imagen de perfil, aquí puedes ver tu perfil completo.",
-                    },
-                    {
-                      element: document.querySelector("#logoutButton"),
-                      intro: "Cuando termines, puedes cerrar sesión aquí.",
-                    },
-
-                    {
-                      element: document.querySelector(".content"),
-                      intro: "Y este es el área principal de contenido.",
-                    },
-                    // ... más pasos ...
-                  ],
-                  exitOnOverlayClick: false,
-                  hidePrev: true,
-                  hideNext: true,
-                  nextLabel: "Siguiente",
-                  prevLabel: "Anterior",
-                  skipLabel: "Saltar",
-                  doneLabel: "Terminar",
-                })
-                .start();
-            },
-            error: function () {
-              // Manejar errores en la solicitud AJAX
-              console.log("Error al obtener el menú");
-            },
-          });
-          $("#sidebar").on("click", "#logoutButton", function (e) {
-            e.preventDefault();
-
-            $.ajax({
-              type: "POST",
-              url: "../Models/logout.php",
-              success: function (response) {
-                Swal.fire({
-                  title: "Éxito",
-                  text: "Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.",
-                  icon: "success",
-                  confirmButtonText: "Ok",
-                }).then((result) => {
-                  if (result.value) {
-                    window.location.href = "./index.html";
-                  }
-                });
-              },
-              error: function () {
-                alert("Error al cerrar sesión");
-              },
-            });
-          });
-        }
-      });
-    </script>
 
     <!-- widget que muestra calificaciones parciales -->
     <section class="widget-calf">
@@ -364,15 +231,7 @@
       <div class="news-content">
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
-          impedit reprehenderit eveniet quasi aperiam amet rem voluptas at ex
-          itaque similique, quam autem ut ab! Quaerat earum vero animi ipsam,
-          est nostrum enim ab consectetur commodi. Dolore quas molestias
-          repellendus repellat perferendis neque, inventore hic quasi! Ut veniam
-          unde distinctio neque, et quibusdam cum est dicta quos nostrum magnam
-          maxime facere dolorum voluptates, ullam ducimus, totam ex incidunt!
-          Tenetur fuga officia sequi voluptates accusantium laudantium, quod
-          dolor quis officiis. Nobis dolor, quam est suscipit dolorem
-          necessitatibus earum quae, animi fugiat dolorum nemo, assumenda ipsum
+          enda ipsum
           quasi cum et voluptates? Molestias, doloremque.
         </p>
         <br />
@@ -420,5 +279,141 @@
       </div>
       <div class="about-content"></div>
     </section>
+    <script src="../Controllers/sideBar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/intro.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        
+        obtenerMenu();
+        $.ajax({
+          url: "../Models/perfil.php",
+          type: "GET",
+          dataType: "json",
+          statusCode: {
+            302: function () {
+              // Redirigir al usuario a la página de inicio
+              window.location.href = "./index.html";
+            },
+          },
+          success: function (response) {
+            $("#matricula").text(response.matricula);
+            $("#pais").text(response.pais);
+            $("#ciudad").text(response.ciudad);
+            $("#fecha_nacimiento").text(response.fecha_nacimiento);
+            $("#calle").text(response.calle);
+            $("#telefono").text(response.telefono);
+            $("#nombre").text(response.nombre);
+
+            $("#correo").text(response.correo);
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+          },
+        });
+        function obtenerMenu() {
+          $.ajax({
+            url: "../Models/menu.php",
+            success: function (response) {
+              // Actualizar el contenido del menú
+              $("#sidebar").html(response);
+
+              introJs()
+                .setOptions({
+                  steps: [
+                    {
+                      intro:
+                        "Bienvenido a tu nuevo portal. ¡Vamos a realizar un tour rápido!",
+                    },
+                    {
+                      element: document.querySelector("#sidebarOpen"),
+                      intro:
+                        "Este es el botón para expandir o colapsar la barra lateral.",
+                    },
+                    {
+                      element: document.querySelector("#sidebar"),
+                      intro: "Aquí puedes encontrar diferentes secciones.",
+                    },
+                    {
+                      element: document.querySelector("#homeButton"),
+                      intro: "Haz clic aquí para ir a la página principal.",
+                    },
+                    {
+                      element: document.querySelector("#gradesButton"),
+                      intro: "Aquí puedes ver tus calificaciones.",
+                    },
+                    {
+                      element: document.querySelector("#coursesButton"),
+                      intro:
+                        "Explora los cursos en los que estás inscrito aquí.",
+                    },
+                    {
+                      element: document.querySelector("#settingsButton"),
+                      intro:
+                        "Configura tu perfil y preferencias desde esta sección.",
+                    },
+                    {
+                      element: document.querySelector("#seeAllButton"),
+                      intro: "Encuentra más opciones disponibles para ti aquí.",
+                    },
+                    {
+                      element: document.querySelector("#profileImage"),
+                      intro:
+                        "Esta es tu imagen de perfil, aquí puedes ver tu perfil completo.",
+                    },
+                    {
+                      element: document.querySelector("#logoutButton"),
+                      intro: "Cuando termines, puedes cerrar sesión aquí.",
+                    },
+
+                    {
+                      element: document.querySelector(".content"),
+                      intro: "Y este es el área principal de contenido.",
+                    },
+                    // ... más pasos ...
+                  ],
+                  exitOnOverlayClick: false,
+                  hidePrev: true,
+                  hideNext: true,
+                  nextLabel: "Siguiente",
+                  prevLabel: "Anterior",
+                  skipLabel: "Saltar",
+                  doneLabel: "Terminar",
+                })
+                .start();
+            },
+            error: function () {
+              // Manejar errores en la solicitud AJAX
+              console.log("Error al obtener el menú");
+            },
+          });
+          $("#sidebar").on("click", "#logoutButton", function (e) {
+            e.preventDefault();
+
+            $.ajax({
+              type: "POST",
+              url: "../Models/logout.php",
+              success: function (response) {
+                Swal.fire({
+                  title: "Éxito",
+                  text: "Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.",
+                  icon: "success",
+                  confirmButtonText: "Ok",
+                }).then((result) => {
+                  if (result.value) {
+                    window.location.href = "./index.html";
+                  }
+                });
+              },
+              error: function () {
+                alert("Error al cerrar sesión");
+              },
+            });
+          });
+        }
+      });
+    </script>
+
+    
   </body>
 </html>
