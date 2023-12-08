@@ -18,8 +18,8 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../Styles/side-bar.css">
-    <link rel="stylesheet" href="../Styles/configuracion.css">
+    <link rel="stylesheet" href="../Styles/side-bar.css" />
+    <link rel="stylesheet" href="../Styles/configuracion.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Configuración</title>
   </head>
@@ -29,45 +29,58 @@
         <i class="bx bx-menu" id="sidebarOpen"></i>
       </div>
     </nav>
-    <nav class="sidebar" id="sidebar">
-      
-    </nav>
+    <nav class="sidebar" id="sidebar"></nav>
     <div class="container">
       <div class="content">
         <h3>Configuración</h3>
-        <p>Configuración de favoritos, colores y más.</p> 
-       </div> 
+        <p>Configuración de favoritos, colores y más.</p>
+      </div>
     </div>
     <div class="setting-container">
       <ul class="setting-list">
-        <li>
+        <!-- <li>
           <div class="toggle-container">
             <div class="toggle-item">
               <span class="toggle-text">Notificaciones</span>
               <label class="toggle" for="myToggle">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle">
+                <input
+                  class="toggle__input"
+                  name=""
+                  type="checkbox"
+                  id="myToggle"
+                />
                 <div class="toggle__fill"></div>
               </label>
             </div>
           </div>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <div class="toggle-container">
             <div class="toggle-item">
               <span class="toggle-text">Modo oscuro</span>
               <label class="toggle" for="myToggle2">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle2">
+                <input
+                  class="toggle__input"
+                  name=""
+                  type="checkbox"
+                  id="myToggle2"
+                />
                 <div class="toggle__fill"></div>
               </label>
             </div>
           </div>
-        </li>
+        </li> -->
         <li>
           <div class="toggle-container">
             <div class="toggle-item">
               <span class="toggle-text">Mostrar favoritos</span>
               <label class="toggle" for="myToggle3">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle3">
+                <input
+                  class="toggle__input"
+                  name=""
+                  type="checkbox"
+                  id="myToggle3"
+                />
                 <div class="toggle__fill"></div>
               </label>
             </div>
@@ -81,7 +94,13 @@
             <div class="toggle-item">
               <span class="toggle-text">Mis calificaciones</span>
               <label class="toggle" for="myToggle4">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle4" checked>
+                <input
+                  class="toggle__input"
+                  name=""
+                  type="checkbox"
+                  id="myToggle4"
+                  checked
+                />
                 <div class="toggle__fill"></div>
               </label>
             </div>
@@ -92,7 +111,13 @@
             <div class="toggle-item">
               <span class="toggle-text">Mis cursos</span>
               <label class="toggle" for="myToggle5">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle5" checked>
+                <input
+                  class="toggle__input"
+                  name=""
+                  type="checkbox"
+                  id="myToggle5"
+                  checked
+                />
                 <div class="toggle__fill"></div>
               </label>
             </div>
@@ -103,7 +128,12 @@
             <div class="toggle-item">
               <span class="toggle-text">Kardex</span>
               <label class="toggle" for="myToggle6">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle6">
+                <input
+                  class="toggle__input"
+                  name=""
+                  type="checkbox"
+                  id="myToggle6"
+                />
                 <div class="toggle__fill"></div>
               </label>
             </div>
@@ -114,7 +144,12 @@
             <div class="toggle-item">
               <span class="toggle-text">Mi correo electrónico</span>
               <label class="toggle" for="myToggle7">
-                <input class="toggle__input" name="" type="checkbox" id="myToggle7">
+                <input
+                  class="toggle__input"
+                  name=""
+                  type="checkbox"
+                  id="myToggle7"
+                />
                 <div class="toggle__fill"></div>
               </label>
             </div>
@@ -125,67 +160,64 @@
     <script src="../Controllers/sideBar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    $(document).ready(function () {
-      obtenerMenu()
+      $(document).ready(function () {
+        obtenerMenu();
 
-      $('#sidebar').on('click', '#logoutButton', function(e) {
-        e.preventDefault();
+        $("#sidebar").on("click", "#logoutButton", function (e) {
+          e.preventDefault();
 
-        $.ajax({
-            type: 'POST',
-            url: '../Models/logout.php',
-            success: function(response) {
-                Swal.fire({
-                    title: 'Éxito',
-                    text: 'Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location.href = './index.html';
-                    }
-                });
+          $.ajax({
+            type: "POST",
+            url: "../Models/logout.php",
+            success: function (response) {
+              Swal.fire({
+                title: "Éxito",
+                text: "Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.",
+                icon: "success",
+                confirmButtonText: "Ok",
+              }).then((result) => {
+                if (result.value) {
+                  window.location.href = "./index.html";
+                }
+              });
             },
-            error: function() {
-                alert('Error al cerrar sesión');
-            }
+            error: function () {
+              alert("Error al cerrar sesión");
+            },
+          });
         });
-    });
 
-    $('.toggle__input').change(function() {
-        var toggleId = $(this).attr('id');
-        var toggleState = $(this).is(':checked');
-        $.ajax({
-            type: 'POST',
-            url: '../Models/manejarToggle.php',
+        $(".toggle__input").change(function () {
+          var toggleId = $(this).attr("id");
+          var toggleState = $(this).is(":checked");
+          $.ajax({
+            type: "POST",
+            url: "../Models/manejarToggle.php",
             data: {
-                toggle: toggleId,
-                state: toggleState
+              toggle: toggleId,
+              state: toggleState,
             },
-            success: function(response) {
-                
-                obtenerMenu();
+            success: function (response) {
+              obtenerMenu();
             },
-            error: function() {
-                alert('Error al cambiar el estado del toggle');
-            }
+            error: function () {
+              alert("Error al cambiar el estado del toggle");
+            },
+          });
         });
-    });
 
-    function obtenerMenu() {
-    $.ajax({
-        url: '../Models/menu.php',
-        success: function (response) {
-            $('#sidebar').html(response);
-        },
-        error: function () {
-            console.log('Error al obtener el menú');
+        function obtenerMenu() {
+          $.ajax({
+            url: "../Models/menu.php",
+            success: function (response) {
+              $("#sidebar").html(response);
+            },
+            error: function () {
+              console.log("Error al obtener el menú");
+            },
+          });
         }
-    });
-}
-
-    });
-
-</script>
+      });
+    </script>
   </body>
 </html>
