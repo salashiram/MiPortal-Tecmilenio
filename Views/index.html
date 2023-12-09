@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../Styles/register.css">
     <link rel="stylesheet" href="../Styles/carousel.css">
     <link rel="stylesheet" href="../Styles/pass-recover.css">
+    <link rel="stylesheet" href="../Styles/overlay.css">
     <script defer src="../Views/carousel.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -17,6 +18,16 @@
     <title>Mi Portal Tecmilenio</title>
 </head>
 <body>
+
+
+
+  <!-- pantalla de carga -->
+  <div class="overlay">
+    <div class="loader"></div>
+  </div>
+
+
+
     <section> 
         <!--carousel starts -->
         <section id="container-slider">    
@@ -113,7 +124,8 @@
               <form id="formRegistro"  method="POST">
               <div class="input-box">
                   <label>Nombre completo<span class="required">*</span></label>
-                  <input type="text" placeholder="" required name="nombre"/>
+                  <input id="onlyText" name="onlyText" type="text" placeholder="" required name="nombre"/>
+                  <p id="mensaje-error" style="color: red; display: none;">Datos inválidos, revise nuevamente.</p>
               </div>
                 <div class="input-box">
                   <label>Dirección de correo electrónico<span class="required">*</span></label>
@@ -195,7 +207,6 @@
                 <div class="input-group">
                   <button class="submit-button" type="">Enviar</button>
                 </div>
-                
               </form>
               <div class="input-group">
                 <button id="close-modal" class="submit-button" type="">Cerrar</button>
@@ -274,6 +285,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../Controllers/cleanInputs.js"></script>
 <script src="../Controllers/phoneValidation.js"></script>
+<script src="../Controllers/inputNameValidator.js"></script>
+<!-- <script src="../Controllers/overlay.js"></script> -->
 <script>
   $(document).ready(function() {
     $('#formRegistro').submit(function(event) {
@@ -419,9 +432,12 @@
                         icon: 'success',
                         confirmButtonText: 'Ok'
                     }).then(function() {
+                       // Muestra la animación de carga al hacer clic en 'Ok'
+                       $('.overlay').fadeIn();
                         // Abre el modal2 después de hacer clic en 'Ok'
                         setTimeout(function() {
-                        window.location.href = './home.html'; 
+                          $('.overlay').fadeOut();
+                          window.location.href = './home.html'; 
                     }, 2000);
                        
                     });
