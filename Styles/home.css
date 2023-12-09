@@ -155,3 +155,23 @@ html {
   justify-content: center;
   overflow: hidden;
 }
+#scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: 0.3s ease-in;
+}
+#scrollToTopBtn:hover {
+  background-color: var(--secondary-color);
+  transition: 0.3s ease-in;
+}
