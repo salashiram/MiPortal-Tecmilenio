@@ -379,6 +379,7 @@
                   prevLabel: "Anterior",
                   skipLabel: "Saltar",
                   doneLabel: "Terminar",
+                  scrollPadding: -300,
                 })
                 .start();
             },
@@ -410,6 +411,30 @@
               },
             });
           });
+
+          function hideSidebar() {
+              const sidebar = document.querySelector('.sidebar');
+              // Asegúrate de que esta clase 'close' es la que controla la visibilidad de tu sidebar
+              sidebar.classList.add('close');
+          }
+
+          // Función para reiniciar el temporizador
+          function resetTimer() {
+              // Si ya hay un temporizador, bórralo
+              if (window.sidebarTimer) {
+                  clearTimeout(window.sidebarTimer);
+              }
+              // Establece un nuevo temporizador
+              window.sidebarTimer = setTimeout(hideSidebar, 2000); // 5000 milisegundos = 5 segundos
+          }
+
+          // Eventos para reiniciar el temporizador (puedes agregar más eventos según sea necesario)
+          document.addEventListener('mousemove', resetTimer);
+          document.addEventListener('keypress', resetTimer);
+
+          // Inicializa el temporizador cuando la página se carga
+          resetTimer();
+
         }
       });
     </script>

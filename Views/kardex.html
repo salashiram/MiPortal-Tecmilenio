@@ -139,53 +139,36 @@
                 <li><p>Campus</p><span id="Campus">San Nicolas de los Garza</span></li>
               </ul>                                               
               `);
-
+              let cursosAgrupados = {};
               cursos.forEach(function (curso) {
-                  
-                 if(curso.Oportunidad === '1'){
-                  $("#contenedorPrincipal").append(`                
-                  <tbody>
-                      <tr>
-                        <td>${curso.IdCurso}</td>
-                        <td>${curso.Semestre}</td>
-                        <td>${curso.Creditos}</td>
-                        <td>${curso.NombreMateria}</td>
-                        <td>${curso.Promedio}</td>
-                        <td> </td>
-                        <td> </td>
-                      </tr>                      
-                  </tbody>                                             
-              `);
-                }else if(curso.Oportunidad === '2'){
-                  $("#contenedorPrincipal").append(`                
-                  <tbody>
-                      <tr>
-                        <td>${curso.IdCurso}</td>
-                        <td>${curso.Semestre}</td>
-                        <td>${curso.Creditos}</td>
-                        <td>${curso.NombreMateria}</td>
-                        <td> </td>
-                        <td>${curso.Promedio}</td>
-                        <td> </td>
-                      </tr>                      
-                  </tbody>                                             
-              `);
-                }else if(curso.Oportunidad === '3'){
-                  $("#contenedorPrincipal").append(`                
-                  <tbody>
-                      <tr>
-                        <td>${curso.IdCurso}</td>
-                        <td>${curso.Semestre}</td>
-                        <td>${curso.Creditos}</td>
-                        <td>${curso.NombreMateria}</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>${curso.Promedio}</td>
-                      </tr>                      
-                  </tbody>                                             
-              `);
-                }
+                  if (!cursosAgrupados[curso.NombreMateria]) {
+                      cursosAgrupados[curso.NombreMateria] = {
+                          detalles: curso,
+                          promedios: [null, null, null]
+                      };
+                  }
+
+                  cursosAgrupados[curso.NombreMateria].promedios[curso.Oportunidad - 1] = curso.Promedio;
               });
+
+              Object.values(cursosAgrupados).forEach(function (cursoAgrupado) {
+                  let curso = cursoAgrupado.detalles;
+                  let promedios = cursoAgrupado.promedios;
+                  $("#contenedorPrincipal").append(`
+                      <tbody>
+                          <tr>
+                              <td>${curso.IdCurso}</td>
+                              <td>${curso.Semestre}</td>
+                              <td>${curso.Creditos}</td>
+                              <td>${curso.NombreMateria}</td>
+                              <td>${promedios[0] || ''}</td>
+                              <td>${promedios[1] || ''}</td>
+                              <td>${promedios[2] || ''}</td>
+                          </tr>
+                      </tbody>
+                  `);
+              });
+             
 
           }
 
