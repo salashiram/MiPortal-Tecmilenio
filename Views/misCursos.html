@@ -166,19 +166,7 @@
 
           }
          
-            function obtenerMenu() {
-              $.ajax({
-                  url: '../Models/menu.php',
-                  success: function (response) {
-                      // Actualizar el contenido del menú
-                      $('#sidebar').html(response);
-                  },
-                  error: function () {
-                      // Manejar errores en la solicitud AJAX
-                      console.log('Error al obtener el menú');
-                  }
-                  });
-              }
+           
               function obtenerMenu() {
         $.ajax({
             url: '../Models/menu.php',

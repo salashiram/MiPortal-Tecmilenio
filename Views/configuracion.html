@@ -99,7 +99,7 @@
                   name=""
                   type="checkbox"
                   id="myToggle4"
-                  checked
+                 
                 />
                 <div class="toggle__fill"></div>
               </label>
@@ -116,7 +116,7 @@
                   name=""
                   type="checkbox"
                   id="myToggle5"
-                  checked
+                  
                 />
                 <div class="toggle__fill"></div>
               </label>
@@ -211,6 +211,20 @@
             url: "../Models/menu.php",
             success: function (response) {
               $("#sidebar").html(response);
+
+              $.ajax({
+                url: "../Models/manejarToggle.php", 
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $("#myToggle4").prop("checked", data.showGrades);
+                    $("#myToggle5").prop("checked", data.showCourses);
+                    $("#myToggle6").prop("checked", data.showKardex);
+                },
+                error: function () {
+                    console.log("Error al obtener el estado de los toggles");
+                }
+            });
             },
             error: function () {
               console.log("Error al obtener el menú");
