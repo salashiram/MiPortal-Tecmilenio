@@ -71,9 +71,9 @@ if ($_POST) {
             exit();
         } else {
 
-           
+
             try {
-                
+
                 echo json_encode(['success' => true, 'message' => 'Registro exitoso']);
             } catch (Exception $e) {
                 echo json_encode(['success' => false, 'message' => 'El mensaje no se pudo enviar. Error: ' . $mail->ErrorInfo]);
