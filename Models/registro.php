@@ -10,7 +10,7 @@ $usuarioExistente = 0;
 
 if ($_POST) {
 
-    $nombre = $_POST['nombre'];
+    $nombre = $_POST['onlyText'];
 
     $correo = $_POST['correo'];
     $fechaNac = $_POST['Fecha_N'];
