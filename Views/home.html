@@ -74,19 +74,19 @@
         <ul>
           <li><a href="#events">Próximos eventos</a></li>
           <li><a href="#news">Últimas noticias</a></li>
-          <li><a href="#results">Resultados parciales</a></li>
+          <!-- <li><a href="#results">Resultados parciales</a></li> -->
           <li><a href="#about">Acerca de</a></li>
         </ul>
       </div>
     </div>
 
     <!-- widget que muestra calificaciones parciales -->
-    <section class="widget-calf">
+    <!-- <section class="widget-calf">
       <div class="widget-title">
         <a id="results" href="">Calificaciones parciales</a>
       </div>
       <div class="calf-content"></div>
-    </section>
+    </section> -->
 
     <!-- widget para eventos proximos start -->
     <section class="widgets">
@@ -96,9 +96,8 @@
       <div class="widget-content">
         <div class="card-container" id="contenedorPrincipal">
           <!-- card starts -->
-          
+
           <!-- card ends -->
-        
         </div>
       </div>
     </section>
@@ -179,40 +178,36 @@
         });
 
         function obtenerCursos() {
-              $.ajax({
-                  url: '../Models/tarjetaCursos.php',
-                  type: 'GET',
-                  dataType: 'json',
-                  data: {                      
-                  },
-                  success: function (response) {
-                      // Utilizar los datos recibidos en el arreglo
-                      if (response && response.length > 0) {
-                          console.log(response);
-                        
-                          tarjetaCursos(response);
-                         
-                         
-                      } else {
-                          console.log("La respuesta está vacía.");
-                      }
-                  },
-                  error: function (xhr, status, error) {
-                      console.error(error);
-                      // Mostrar una alerta antes de redirigir
-                          alert('¡Oh, no! Parece que algo salió mal. Por favor, inicia sesión para continuar.');
+          $.ajax({
+            url: "../Models/tarjetaCursos.php",
+            type: "GET",
+            dataType: "json",
+            data: {},
+            success: function (response) {
+              // Utilizar los datos recibidos en el arreglo
+              if (response && response.length > 0) {
+                console.log(response);
 
-                      // Redirigir a index.html con un mensaje de no inicio de sesión
-                      
-                  }
-              });
-          }
+                tarjetaCursos(response);
+              } else {
+                console.log("La respuesta está vacía.");
+              }
+            },
+            error: function (xhr, status, error) {
+              console.error(error);
+              // Mostrar una alerta antes de redirigir
+              alert(
+                "¡Oh, no! Parece que algo salió mal. Por favor, inicia sesión para continuar."
+              );
 
-          function tarjetaCursos(cursos) {
-              cursos.forEach(function (curso) {
-                  
-                 
-                  $("#contenedorPrincipal").append(`
+              // Redirigir a index.html con un mensaje de no inicio de sesión
+            },
+          });
+        }
+
+        function tarjetaCursos(cursos) {
+          cursos.forEach(function (curso) {
+            $("#contenedorPrincipal").append(`
                  
                   
                   <div class="item-container">
@@ -253,10 +248,8 @@
           </div>
                   
               `);
-              });
-
-          }
-
+          });
+        }
 
         function obtenerMenu() {
           $.ajax({
