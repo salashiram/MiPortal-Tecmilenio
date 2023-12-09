@@ -58,7 +58,7 @@ CREATE TABLE Usuario
   NombreCompleto VARCHAR(50) NOT NULL ,
   Contrasena VARCHAR(30) NOT NULL ,  FechaNacimiento  DATE NOT NULL, 
   Matricula int NOT NULL,
-  Telefono int ,
+  Telefono VARCHAR(20) ,
   FechaIngreso  DATE NOT NULL,
   Rol bool NOT NULL, -- 0 empleado, 1 alumno
   Calle VARCHAR(200),

@@ -5,7 +5,7 @@ INSERT INTO Usuario (Correo, NombreCompleto, Contrasena, FechaNacimiento, Matric
 VALUES ('admin@ejemplo.com', 'Administrador', 'admin1234', '1990-01-01', 0, NULL, CURRENT_DATE, 0, '', '', '', 0, 0);
 
 INSERT INTO Usuario (Correo, NombreCompleto, Contrasena, FechaNacimiento, Matricula, Telefono, FechaIngreso, Rol, Calle, Pais, Ciudad, CP, UsuarioEliminado)
-VALUES ('correo@ejemplo.com', 'Abolfo', 'asd', '1990-01-01', 0, 12345678, CURRENT_DATE, 1, 'Calle', 'Mexico', 'Monterrey', 0, 0);
+VALUES ('correo@ejemplo.com', 'Abolfo', 'asd', '1990-01-01', 0, '12345678', CURRENT_DATE, 1, 'Calle', 'Mexico', 'Monterrey', 0, 0);
 
 -- Insertar datos en la tabla Periodo
 INSERT INTO Periodo (NombrePeriodo)

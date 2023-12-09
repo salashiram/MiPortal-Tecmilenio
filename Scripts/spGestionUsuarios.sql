@@ -12,7 +12,7 @@ CREATE PROCEDURE spGestionUsuarios(
     IN p_Contrasena VARCHAR(30),
     IN p_FechaNacimiento DATE,
     IN p_Matricula INT,
-    IN p_Telefono INT,
+    IN p_Telefono VARCHAR(30),
     IN p_FechaIngreso DATE,
     IN p_Rol BOOLEAN,
     IN p_Calle VARCHAR(200),
