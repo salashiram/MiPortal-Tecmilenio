@@ -30,6 +30,29 @@
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/introjs.min.css"
     />
+    <!-- CSS de Slick Carousel -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    />
+    <!-- Tema predeterminado de Slick Carousel -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    />
+    <link rel="stylesheet" href="../Styles/carousel2.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Plugin Slick Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
     <title>Home</title>
   </head>
   <body>
@@ -222,69 +245,52 @@
       </div>
     </section>
     <!-- widget para eventos proximos ends -->
-
     <!-- Se muestra slider con algunas noticias, al final del home para no distraer al alumno -->
     <section class="news-container">
       <div class="widget-title">
         <a id="news" href="">Últimas noticias</a>
       </div>
       <div class="news-content">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
-          enda ipsum
-          quasi cum et voluptates? Molestias, doloremque.
-        </p>
-        <br />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quo
-          doloremque quasi? Enim voluptate deserunt laboriosam veniam saepe
-          aperiam nemo quo! Nemo suscipit nihil iste et harum placeat, ratione
-          perferendis ex reprehenderit nam sint nesciunt culpa, perspiciatis id
-          pariatur eveniet deserunt, optio est impedit ullam esse earum
-          doloremque odio. Fugiat facilis id molestias voluptate facere officiis
-          dolorem molestiae assumenda velit eaque consequatur nam blanditiis
-          iste beatae, minus voluptas qui vel? Assumenda eos exercitationem
-          sapiente similique nam unde, ipsam quaerat libero quam dolores minima
-          necessitatibus nulla ipsa sequi ab recusandae eaque ex, dolore placeat
-          eveniet. Aliquam ratione distinctio fuga beatae, labore nisi,
-          provident esse amet harum atque blanditiis accusamus laudantium illo
-          nulla? Dolorem accusantium optio inventore explicabo aperiam tenetur
-          cum aspernatur. Modi blanditiis temporibus quidem aliquam quis
-          voluptates, cum reprehenderit molestias officia repudiandae expedita
-          doloremque eligendi obcaecati accusamus eius nobis deserunt odio
-          aperiam. Minima totam voluptas quidem veniam omnis officiis sequi at
-          sapiente! Error illum nam illo possimus omnis consequuntur fugit dolor
-          nulla repellendus itaque quis praesentium aperiam accusamus tempora,
-          odit molestiae quisquam ab eos. Sapiente, tempora voluptas ullam
-          perspiciatis optio saepe, non porro et officia quo maxime, nulla sunt
-          hic culpa dolore. Quo, laboriosam. Dolore commodi expedita amet cumque
-          ullam eaque eligendi sunt minima. Ut laboriosam eveniet minima
-          officiis, ipsum cum similique, vel magnam necessitatibus quae omnis
-          quidem ipsam quisquam dolore pariatur harum fugiat rem sapiente ea!
-          Corporis, deleniti neque nostrum ex inventore possimus! Commodi fugiat
-          error debitis, nihil minus rem ullam nemo impedit! Cupiditate ab magni
-          at, nam, nesciunt nobis nemo hic totam, saepe laudantium vitae?
-          Commodi doloribus, in aperiam perferendis neque ducimus id assumenda
-          mollitia facere veniam, modi dicta, unde sunt error a nemo ipsa quasi
-          officiis magnam quae est repellat! Tempore, sapiente, voluptatum error
-          pariatur magni harum, temporibus magnam odit cum quae laborum.
-          Repellat et consequatur omnis!
-        </p>
+        <!-- SLICK CAROUSEL WITH JQUERY -->
+        <div class="slider-outer">
+          <!-- <i class="fas fa-chevron-left prev"></i> -->
+          <img src="../Resources/carousel2/prev.png" alt="prev" class="prev" />
+          <div class="slider-inner">
+            <img src="../Resources/carousel2/class.jpg" alt="" class="active" />
+            <img src="../Resources/carousel2/sports.jpg" alt="" />
+            <img src="../Resources/carousel2/newyear.jpg" alt="" />
+          </div>
+          <img src="../Resources/carousel2/next.png" alt="next" class="next" />
+          <!-- <i class="fas fa-chevron-right next"></i> -->
+        </div>
       </div>
     </section>
-
     <section class="about-section">
       <div class="widget-title">
         <a id="about" href="">Acerca de</a>
       </div>
-      <div class="about-content"></div>
+      <div class="about-content">
+        <p>&copy; 2023 Tec Milenio. Todos los derechos reservados.</p>
+        <br />
+        <p>Monterrey, Nuevo León, México</p>
+        <br />
+        <p>
+          Para más información visita
+          <a href="https://www.tecmilenio.mx/es"
+            >https://www.tecmilenio.mx/es</a
+          >
+        </p>
+        <br />
+        <p>ó envia un correo electrónico a salashiram@outlook.com</p>
+      </div>
     </section>
     <script src="../Controllers/sideBar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/intro.js/4.1.0/intro.min.js"></script>
+    <script src="../Controllers/slickCarousel.js"></script>
+    <script src="../Controllers/scrollTopButton.js"></script>
     <script>
       $(document).ready(function () {
-        
         obtenerMenu();
         $.ajax({
           url: "../Models/perfil.php",
@@ -413,32 +419,26 @@
           });
 
           function hideSidebar() {
-              const sidebar = document.querySelector('.sidebar');
-              
-              sidebar.classList.add('close');
+            const sidebar = document.querySelector(".sidebar");
+
+            sidebar.classList.add("close");
           }
 
-          
           function resetTimer() {
-              
-              if (window.sidebarTimer) {
-                  clearTimeout(window.sidebarTimer);
-              }
-              
-              window.sidebarTimer = setTimeout(hideSidebar, 2000); 
+            if (window.sidebarTimer) {
+              clearTimeout(window.sidebarTimer);
+            }
+
+            window.sidebarTimer = setTimeout(hideSidebar, 2000);
           }
 
-          
-          document.addEventListener('mousemove', resetTimer);
-          document.addEventListener('keypress', resetTimer);
+          document.addEventListener("mousemove", resetTimer);
+          document.addEventListener("keypress", resetTimer);
 
-          
           resetTimer();
-
         }
       });
     </script>
-
-    
+    <button id="scrollToTopBtn" title="Ir arriba">↑</button>
   </body>
 </html>
