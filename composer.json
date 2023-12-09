@@ -2,7 +2,7 @@
     "name": "rober/mi-portal-tecmilenio",
     "description": "require phpmailer",
     "require": {
-        "phpmailer/phpmailer": "^6.8"
+        "phpmailer/phpmailer": "^6.9"
     },
     "autoload": {
         "psr-4": {

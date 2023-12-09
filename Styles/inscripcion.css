@@ -1,127 +1,186 @@
 :root {
-    --white: #fff;
-    --main-color: #2639e3;
-    --secondary-color: #4aa1d3;
-    --grey: #434141;
-    --light-grey: #aaa;
-    --shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  } 
-  /* :root {
+  --white: #fff;
+  --main-color: #2639e3;
+  --secondary-color: #4aa1d3;
+  --grey: #434141;
+  --light-grey: #aaa;
+  --shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+/* :root {
     --blue: #9ab3f5;
     --purple: #9a1663;
     --white: #ffffff;
     --shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   } */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; 
-    height: 100vh;
-
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* height: 100vh; */
 }
-.content{
-    margin-top: 100px;
+.content {
+  margin-top: 100px;
 }
-.content h3{
-    color: black;
-    font-weight: 600;
-    font-size: 1.5em; 
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    border-bottom: 4px solid var(--main-color);
-    display: inline-block;
-    letter-spacing: 1px;
+.content h3 {
+  color: black;
+  font-weight: 600;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-bottom: 4px solid var(--main-color);
+  display: inline-block;
+  letter-spacing: 1px;
 }
-.content p{
-    font-size: 20px;
+.content p {
+  font-size: 20px;
 }
-.instructions{
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-bottom: 20px;
+.instructions {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
-.instructions p{
-    font-size: 15px;
+.instructions p {
+  font-size: 15px;
 }
 .search-bar {
-    /* display: flex;
+  /* display: flex;
     align-items: center;
     min-width: 700px;
     border-radius: 50px;
     background-color: var(--white);
     margin-top: 30px; */
-    margin-top: 30px;
-  }
-  .dropdown {
-    position: relative;
-    width: 280px;
-    border-radius: 50px;
-    background-color: var(--main-color);
-    border: 1px solid var(--white);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-  }
-  .dropdown-text {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1rem;
-    font-weight: 500;
-    background-color: transparent;
-    padding: 1rem 1.5rem;
-    color: var(--white);
-  }
-  .dropdown-list {
-    display: block;
-    position: absolute;
-    top: 4rem;
-    left: 0;
-    width: 100%;
-    border-radius: 15px;
-    max-height: 0;
-    overflow: hidden;
-    background-color: var(--white);
-    transition: max-height 0.5s;
-    overflow-y: auto;
-  }
-  .dropdown-list-item {
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 15px;
-    padding: 1rem 0 1rem 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.3s ease, margin-left 0.2s ease;
-  }
-  .dropdown-list-item:hover {
-    /* margin-left: 0.5rem; */
-    background: var(--secondary-color);
-    transition: background-color 0.2s ease, color 0.3s ease, margin-left 0.2s ease;
-  }
-  #list.show {
-    max-height: 300px;
-  }
-  .search-box {
-    display: flex;
-    align-items: center;
-    padding-right: 1rem;
-    width: 100%;
-    color: var(--main-color);
-  }
-  .search-box input {
-    padding: 1rem;
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--grey);
-    border: 0;
-    outline: 0;
-  }
-  .search-box i {
-    font-size: 1.3rem;
-    cursor: pointer;
-  }
-  .search-box input::placeholder {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--grey);
-  }
+  margin-top: 30px;
+}
+.dropdown {
+  position: relative;
+  width: 280px;
+  border-radius: 50px;
+  background-color: var(--main-color);
+  border: 1px solid var(--white);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+.dropdown-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: transparent;
+  padding: 1rem 1.5rem;
+  color: var(--white);
+}
+.dropdown-list {
+  display: block;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  border-radius: 15px;
+  max-height: 0;
+  overflow: hidden;
+  background-color: var(--white);
+  transition: max-height 0.5s;
+  overflow-y: auto;
+}
+.dropdown-list-item {
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 15px;
+  padding: 1rem 0 1rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.3s ease, margin-left 0.2s ease;
+}
+.dropdown-list-item:hover {
+  /* margin-left: 0.5rem; */
+  background: var(--secondary-color);
+  transition: background-color 0.2s ease, color 0.3s ease, margin-left 0.2s ease;
+}
+#list.show {
+  max-height: 300px;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
+  width: 100%;
+  color: var(--main-color);
+}
+.search-box input {
+  padding: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--grey);
+  border: 0;
+  outline: 0;
+}
+.search-box i {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.search-box input::placeholder {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--grey);
+}
+.card-container {
+  width: 80%;
+  margin: 0 auto; /* Centrar horizontalmente */
+  margin-top: 50px;
+}
+.card-content {
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: 15px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 190px;
+  overflow: auto;
+}
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.card-subhead {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.inscribir-btn {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+.inscribir-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.cards-title {
+  padding: 50px;
+  width: 100%;
+}
+.cards-title p {
+  border-bottom: 4px solid var(--main-color);
+  color: black;
+  font-size: 1.5em;
+}
