@@ -94,153 +94,11 @@
         <a id="events" href="">Próximos eventos</a>
       </div>
       <div class="widget-content">
-        <div class="card-container">
+        <div class="card-container" id="contenedorPrincipal">
           <!-- card starts -->
-          <div class="item-container">
-            <div class="img-container">
-              <img src="../Resources/class1.jpg" alt="Event image" />
-            </div>
-            <div class="body-container">
-              <div class="overlay"></div>
-              <div class="event-info">
-                <!-- nombre del curso  -->
-                <p class="title">Programación web 1</p>
-                <div class="separator"></div>
-                <!-- Modalidad de la clase -->
-                <p class="info">En línea</p>
-                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
-                <p class="price">Virtual</p>
-                <div class="additional-info">
-                  <p class="info">
-                    <!-- Locacion del evento, deberia de mostrar el campus -->
-                    <i class="fas fa-map-marker-alt"></i>
-                    San Nicolás de los Garza
-                  </p>
-                  <p class="info">
-                    <!-- Fecha y hora del evento en cuestion -->
-                    <i class="far fa-calendar-alt"></i>
-                    Sat, Dic 9, 10:00 AM EDT
-                  </p>
-                  <!-- descripcion del evento -->
-                  <p class="info description">
-                    Descripción del evento
-                    <span><a href="#">Más...</a></span>
-                  </p>
-                </div>
-              </div>
-              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
-              <button class="action">Ver más</button>
-            </div>
-          </div>
+          
           <!-- card ends -->
-          <div class="item-container">
-            <div class="img-container">
-              <img src="../Resources/class1.jpg" alt="Event image" />
-            </div>
-            <div class="body-container">
-              <div class="overlay"></div>
-              <div class="event-info">
-                <!-- nombre del curso  -->
-                <p class="title">Programación web 1</p>
-                <div class="separator"></div>
-                <!-- Modalidad de la clase -->
-                <p class="info">En línea</p>
-                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
-                <p class="price">Virtual</p>
-                <div class="additional-info">
-                  <p class="info">
-                    <!-- Locacion del evento, deberia de mostrar el campus -->
-                    <i class="fas fa-map-marker-alt"></i>
-                    San Nicolás de los Garza
-                  </p>
-                  <p class="info">
-                    <!-- Fecha y hora del evento en cuestion -->
-                    <i class="far fa-calendar-alt"></i>
-                    Sat, Dic 9, 10:00 AM EDT
-                  </p>
-                  <!-- descripcion del evento -->
-                  <p class="info description">
-                    Descripción del evento
-                    <span><a href="#">Más...</a></span>
-                  </p>
-                </div>
-              </div>
-              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
-              <button class="action">Ver más</button>
-            </div>
-          </div>
-          <div class="item-container">
-            <div class="img-container">
-              <img src="../Resources/class1.jpg" alt="Event image" />
-            </div>
-            <div class="body-container">
-              <div class="overlay"></div>
-              <div class="event-info">
-                <!-- nombre del curso  -->
-                <p class="title">Programación web 1</p>
-                <div class="separator"></div>
-                <!-- Modalidad de la clase -->
-                <p class="info">En línea</p>
-                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
-                <p class="price">Virtual</p>
-                <div class="additional-info">
-                  <p class="info">
-                    <!-- Locacion del evento, deberia de mostrar el campus -->
-                    <i class="fas fa-map-marker-alt"></i>
-                    San Nicolás de los Garza
-                  </p>
-                  <p class="info">
-                    <!-- Fecha y hora del evento en cuestion -->
-                    <i class="far fa-calendar-alt"></i>
-                    Sat, Dic 9, 10:00 AM EDT
-                  </p>
-                  <!-- descripcion del evento -->
-                  <p class="info description">
-                    Descripción del evento
-                    <span><a href="#">Más...</a></span>
-                  </p>
-                </div>
-              </div>
-              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
-              <button class="action">Ver más</button>
-            </div>
-          </div>
-          <div class="item-container">
-            <div class="img-container">
-              <img src="../Resources/class1.jpg" alt="Event image" />
-            </div>
-            <div class="body-container">
-              <div class="overlay"></div>
-              <div class="event-info">
-                <!-- nombre del curso  -->
-                <p class="title">Programación web 1</p>
-                <div class="separator"></div>
-                <!-- Modalidad de la clase -->
-                <p class="info">En línea</p>
-                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
-                <p class="price">Virtual</p>
-                <div class="additional-info">
-                  <p class="info">
-                    <!-- Locacion del evento, deberia de mostrar el campus -->
-                    <i class="fas fa-map-marker-alt"></i>
-                    San Nicolás de los Garza
-                  </p>
-                  <p class="info">
-                    <!-- Fecha y hora del evento en cuestion -->
-                    <i class="far fa-calendar-alt"></i>
-                    Sat, Dic 9, 10:00 AM EDT
-                  </p>
-                  <!-- descripcion del evento -->
-                  <p class="info description">
-                    Descripción del evento
-                    <span><a href="#">Más...</a></span>
-                  </p>
-                </div>
-              </div>
-              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
-              <button class="action">Ver más</button>
-            </div>
-          </div>
+        
         </div>
       </div>
     </section>
@@ -292,6 +150,7 @@
     <script>
       $(document).ready(function () {
         obtenerMenu();
+        obtenerCursos();
         $.ajax({
           url: "../Models/perfil.php",
           type: "GET",
@@ -317,6 +176,87 @@
             console.error(error);
           },
         });
+
+        function obtenerCursos() {
+              $.ajax({
+                  url: '../Models/tarjetaCursos.php',
+                  type: 'GET',
+                  dataType: 'json',
+                  data: {                      
+                  },
+                  success: function (response) {
+                      // Utilizar los datos recibidos en el arreglo
+                      if (response && response.length > 0) {
+                          console.log(response);
+                        
+                          tarjetaCursos(response);
+                         
+                         
+                      } else {
+                          console.log("La respuesta está vacía.");
+                      }
+                  },
+                  error: function (xhr, status, error) {
+                      console.error(error);
+                      // Mostrar una alerta antes de redirigir
+                          alert('¡Oh, no! Parece que algo salió mal. Por favor, inicia sesión para continuar.');
+
+                      // Redirigir a index.html con un mensaje de no inicio de sesión
+                      
+                  }
+              });
+          }
+
+          function tarjetaCursos(cursos) {
+              cursos.forEach(function (curso) {
+                  
+                 
+                  $("#contenedorPrincipal").append(`
+                 
+                  
+                  <div class="item-container">
+            <div class="img-container">
+              <img src="../Resources/class1.jpg" alt="Event image" />
+            </div>
+            <div class="body-container">
+              <div class="overlay"></div>
+              <div class="event-info">
+                <!-- nombre del curso  -->
+                <p class="title">${curso.Curso}</p>
+                <div class="separator"></div>
+                <!-- Modalidad de la clase -->
+                <p class="info">En línea</p>
+                <!-- aula del curso en cuestion; si es virtual no aplica y mostrara "virtual" -->
+                <p class="price">Virtual</p>
+                <div class="additional-info">
+                  <p class="info">
+                    <!-- Locacion del evento, deberia de mostrar el campus -->
+                    <i class="fas fa-map-marker-alt"></i>
+                    San Nicolás de los Garza
+                  </p>
+                  <p class="info">
+                    <!-- Fecha y hora del evento en cuestion -->
+                    <i class="far fa-calendar-alt"></i>
+                    Sat, Dic 9, 10:00 AM EDT
+                  </p>
+                  <!-- descripcion del evento -->
+                  <p class="info description">
+                    Descripción del evento
+                    <span><a href="../Views/misCursos.html">Más...</a></span>
+                  </p>
+                </div>
+              </div>
+              <!-- button para ver mas, reedirige a la pagina de cursos o segun sea lo mostrado en el widget -->
+              <button onclick="location.href='../Views/misCursos.html';"  class="action">Ver más</button>
+            </div>
+          </div>
+                  
+              `);
+              });
+
+          }
+
+
         function obtenerMenu() {
           $.ajax({
             url: "../Models/menu.php",
