@@ -185,6 +185,41 @@
             }
             });
         }
+        function obtenerMenu() {
+        $.ajax({
+            url: '../Models/menu.php',
+            success: function (response) {
+                // Actualizar el contenido del menú
+                $('#sidebar').html(response);
+            },
+            error: function () {
+                // Manejar errores en la solicitud AJAX
+                console.log('Error al obtener el menú');
+            }
+            });
+        }
+        function hideSidebar() {
+              const sidebar = document.querySelector('.sidebar');
+              
+              sidebar.classList.add('close');
+          }
+
+          
+          function resetTimer() {
+              
+              if (window.sidebarTimer) {
+                  clearTimeout(window.sidebarTimer);
+              }
+              
+              window.sidebarTimer = setTimeout(hideSidebar, 2000); 
+          }
+
+         
+          document.addEventListener('mousemove', resetTimer);
+          document.addEventListener('keypress', resetTimer);
+
+          
+          resetTimer();
       });
   
   </script>
