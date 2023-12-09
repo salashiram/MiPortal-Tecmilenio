@@ -30,26 +30,26 @@
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../Styles/overlay.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Username</title>
   </head>
   <body>
+    <!-- pantalla de carga -->
+    <div class="overlay">
+      <div class="loader"></div>
+    </div>
     <nav class="navbar">
       <div class="logo">
         <i class="bx bx-menu" id="sidebarOpen"></i>
       </div>
     </nav>
-    <nav class="sidebar" id="sidebar">
-      
-    </nav>
+    <nav class="sidebar" id="sidebar"></nav>
     <section class="seccion-perfil-usuario">
       <div class="perfil-usuario-header">
         <div class="perfil-usuario-portada">
           <div class="perfil-usuario-avatar">
-            <img
-              src=""
-              alt="img-avatar"
-            />
+            <img src="" alt="img-avatar" />
             <!-- <button type="button" class="boton-avatar">
               <i class="far fa-image"></i>
             </button> -->
@@ -60,234 +60,256 @@
         </div>
       </div>
 
-
-      
       <div id="edit-info" class="perfil-usuario-body">
         <div class="perfil-usuario-bio">
           <div class="edit-info">
-                      <!-- register frm -->
-          <div id="frm-edit" class="formBx">
-            <form id="formRegistro"  method="POST">
-            <div class="input-box">
-              <label>Nombre completo<span class="required">*</span></label>
-              <input type="text" placeholder="" required name="nombre"/>
-            </div>
-            <div class="input-box">
-              <label
-                >Dirección de correo electrónico<span class="required"
-                  >*</span
-                ></label
-              >
-              <input
-                type="text"
-                placeholder="hola@tecmilenio.com.mx"
-                required name="correo"
-              />
-            </div>
-            <div class="column">
-              <div class="input-box">
-                <label>Matricula<span class="required">*</span></label>
-                <input type="number" placeholder="" required name="matricula"/>
-              </div>
-              <div class="input-box">
-                <!-- not required -->
-                <label>Número de teléfono<span class="required"></span></label>
-                <input type="number" placeholder=""name="telefono" />
-              </div>
-            </div>
-            <div class="input-box">
-              <label
-                >Fecha de nacimiento<span class="required">*</span></label
-              >
-              <input type="date" placeholder="" required name="Fecha_N"/>
-            </div>
-            <div class="input-box address">
-              <label>Domicilio</label>
-              <input
-                type="text"
-                placeholder="ex. Paseo de los leones apt 505"
-                name="domicilio"
-              />
-              <div class="column">
-                <div class="select-box">
-                  <select name="pais">
-                    <option hidden>País</option>
-                    <option>México</option>
-                  </select>
+            <!-- register frm -->
+            <div id="frm-edit" class="formBx">
+              <form id="formRegistro" method="POST">
+                <div class="input-box">
+                  <label>Nombre completo<span class="required">*</span></label>
+                  <input type="text" placeholder="" required name="nombre" />
                 </div>
-                <input type="text" placeholder="Ciudad" name="ciudad"/>
-                <input type="number" placeholder="Código postal" name="cp"/>
-              </div>
-              <div class="input-box">
-                <label>Descripción</label>
-                <textarea id="miTextarea" maxlength="100"></textarea>
-                <p id="contador-caracteres">Caracteres restantes: 100</p>
-              </div>
+                <div class="input-box">
+                  <label
+                    >Dirección de correo electrónico<span class="required"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    placeholder="hola@tecmilenio.com.mx"
+                    required
+                    name="correo"
+                  />
+                </div>
+                <div class="column">
+                  <div class="input-box">
+                    <label>Matricula<span class="required">*</span></label>
+                    <input
+                      type="number"
+                      placeholder=""
+                      required
+                      name="matricula"
+                    />
+                  </div>
+                  <div class="input-box">
+                    <!-- not required -->
+                    <label
+                      >Número de teléfono<span class="required"></span
+                    ></label>
+                    <input type="number" placeholder="" name="telefono" />
+                  </div>
+                </div>
+                <div class="input-box">
+                  <label
+                    >Fecha de nacimiento<span class="required">*</span></label
+                  >
+                  <input type="date" placeholder="" required name="Fecha_N" />
+                </div>
+                <div class="input-box address">
+                  <label>Domicilio</label>
+                  <input
+                    type="text"
+                    placeholder="ex. Paseo de los leones apt 505"
+                    name="domicilio"
+                  />
+                  <div class="column">
+                    <div class="select-box">
+                      <select name="pais">
+                        <option hidden>País</option>
+                        <option>México</option>
+                      </select>
+                    </div>
+                    <input type="text" placeholder="Ciudad" name="ciudad" />
+                    <input
+                      type="number"
+                      placeholder="Código postal"
+                      name="cp"
+                    />
+                  </div>
+                  <div class="input-box">
+                    <label>Descripción</label>
+                    <textarea id="miTextarea" maxlength="100"></textarea>
+                    <p id="contador-caracteres">Caracteres restantes: 100</p>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <button id="btn-submit">Guardar</button>
+                  <button id="btn-cancel">Cancelar</button>
+                </div>
+              </form>
             </div>
-            <div class="buttons">
-              <button id="btn-submit">Guardar</button>            
-              <button id="btn-cancel">Cancelar</button>
-            </div>
-          </form>
-          </div>
-          <!-- register ends -->
+            <!-- register ends -->
           </div>
         </div>
       </div>
       <div id="info-view" class="perfil-usuario-body">
         <div class="perfil-usuario-bio">
-            <h3 class="titulo" id="nombre">Nombre del Usuario</h3>
-            <p class="texto" id="correo">Correo Electrónico</p>
+          <h3 class="titulo" id="nombre">Nombre del Usuario</h3>
+          <p class="texto" id="correo">Correo Electrónico</p>
         </div>
         <div class="perfil-usuario-footer">
-            <ul class="lista-datos">
-                <li><i class="icono fas fa-map-marker-alt"></i><span id="ciudad">Ciudad: </span></li>
-                <li><i class="icono fas fa-map-signs"></i><span id="calle">Dirección de Usuario: </span></li>
-                <li><i class="icono fas fa-phone-alt"></i><span id="telefono">Teléfono: </span></li>
-                <li><i class="icono fas fa-calendar-alt"></i><span id="fecha_nacimiento">Fecha de Nacimiento: </span></li>
-            </ul>
-            <ul class="lista-datos">
-                <li><i class="icono fas fa-user-check"></i><span id="registro">Activo</span></li>
-                <li><i class="icono fas fa-building"></i><span id="carrera"> LMAD</span></li>
-                <li><i class="icono fas fa-share-alt"></i><span id="matricula">Número de Matricula: </span></li>
-            </ul>
+          <ul class="lista-datos">
+            <li>
+              <i class="icono fas fa-map-marker-alt"></i
+              ><span id="ciudad">Ciudad: </span>
+            </li>
+            <li>
+              <i class="icono fas fa-map-signs"></i
+              ><span id="calle">Dirección de Usuario: </span>
+            </li>
+            <li>
+              <i class="icono fas fa-phone-alt"></i
+              ><span id="telefono">Teléfono: </span>
+            </li>
+            <li>
+              <i class="icono fas fa-calendar-alt"></i
+              ><span id="fecha_nacimiento">Fecha de Nacimiento: </span>
+            </li>
+          </ul>
+          <ul class="lista-datos">
+            <li>
+              <i class="icono fas fa-user-check"></i
+              ><span id="registro">Activo</span>
+            </li>
+            <li>
+              <i class="icono fas fa-building"></i
+              ><span id="carrera"> LMAD</span>
+            </li>
+            <li>
+              <i class="icono fas fa-share-alt"></i
+              ><span id="matricula">Número de Matricula: </span>
+            </li>
+          </ul>
         </div>
         <div class="first-div">
-            <div class="second-div">
-                <!-- <button id="btn-edit">Editar</button> -->
-            </div>
+          <div class="second-div">
+            <!-- <button id="btn-edit">Editar</button> -->
+          </div>
         </div>
-    </div>
+      </div>
     </section>
     <script src="../Controllers/sideBar.js"></script>
     <script src="../Controllers/characterCounter.js"></script>
     <script src="../Controllers/showEditInfo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Controllers/overlay.js"></script>
     <script>
-      $(document).ready(function() {
-        obtenerMenu()
+      $(document).ready(function () {
+        obtenerMenu();
         $.ajax({
-          url: '../Models/perfil.php',
-          type: 'GET',
-          dataType: 'json',
+          url: "../Models/perfil.php",
+          type: "GET",
+          dataType: "json",
           statusCode: {
-            302: function() {
+            302: function () {
               // Redirigir al usuario a la página de inicio
-              window.location.href = './index.html';
-            }
-          },
-          success: function(response) {
-            
-            $('#matricula').text(response.matricula);
-            $('#pais').text(response.pais);
-            $('#ciudad').text(response.ciudad);
-            $('#fecha_nacimiento').text(response.fecha_nacimiento);
-            $('#calle').text(response.calle);
-            $('#telefono').text(response.telefono);
-            $('#nombre').text(response.nombre);
-           
-            $('#correo').text(response.correo);
-          },
-          error: function(xhr, status, error) {
-            
-            console.error(error);
-          }
-        });
-
-        $('#formRegistro').submit(function(event) {
-          
-          event.preventDefault();          
-          $.ajax({
-              type: 'POST',
-              url: '../Models/editUser.php',
-              data: $(this).serialize(),
-              dataType: 'json',
-              success: function(response) {
-                  
-                  console.log('Respuesta recibida: ', response);
-                  alert('Cambios Guardados, ');
-                  window.location.reload();
-              },
-              error: function() {
-                  
-                  console.error('Error en la solicitud AJAX');
-              }
-          });
-      });
-
-      $('#sidebar').on('click', '#logoutButton', function(e) {
-        e.preventDefault();
-
-        $.ajax({
-            type: 'POST',
-            url: '../Models/logout.php',
-            success: function(response) {
-                Swal.fire({
-                    title: 'Éxito',
-                    text: 'Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location.href = './index.html';
-                    }
-                });
+              window.location.href = "./index.html";
             },
-            error: function() {
-                alert('Error al cerrar sesión');
-            }
+          },
+          success: function (response) {
+            $("#matricula").text(response.matricula);
+            $("#pais").text(response.pais);
+            $("#ciudad").text(response.ciudad);
+            $("#fecha_nacimiento").text(response.fecha_nacimiento);
+            $("#calle").text(response.calle);
+            $("#telefono").text(response.telefono);
+            $("#nombre").text(response.nombre);
+
+            $("#correo").text(response.correo);
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+          },
         });
-    });
-     
-        function obtenerMenu() {
+
+        $("#formRegistro").submit(function (event) {
+          event.preventDefault();
           $.ajax({
-              url: '../Models/menu.php',
-              success: function (response) {
-                  // Actualizar el contenido del menú
-                  $('#sidebar').html(response);
-              },
-              error: function () {
-                  // Manejar errores en la solicitud AJAX
-                  console.log('Error al obtener el menú');
-              }
-              });
-          }
-          function obtenerMenu() {
-        $.ajax({
-            url: '../Models/menu.php',
+            type: "POST",
+            url: "../Models/editUser.php",
+            data: $(this).serialize(),
+            dataType: "json",
             success: function (response) {
-                // Actualizar el contenido del menú
-                $('#sidebar').html(response);
+              console.log("Respuesta recibida: ", response);
+              alert("Cambios Guardados, ");
+              window.location.reload();
             },
             error: function () {
-                // Manejar errores en la solicitud AJAX
-                console.log('Error al obtener el menú');
-            }
-            });
+              console.error("Error en la solicitud AJAX");
+            },
+          });
+        });
+
+        $("#sidebar").on("click", "#logoutButton", function (e) {
+          e.preventDefault();
+
+          $.ajax({
+            type: "POST",
+            url: "../Models/logout.php",
+            success: function (response) {
+              Swal.fire({
+                title: "Éxito",
+                text: "Tu sesión ha sido cerrada con éxito. Serás redirigido a la página de inicio.",
+                icon: "success",
+                confirmButtonText: "Ok",
+              }).then((result) => {
+                if (result.value) {
+                  window.location.href = "./index.html";
+                }
+              });
+            },
+            error: function () {
+              alert("Error al cerrar sesión");
+            },
+          });
+        });
+
+        function obtenerMenu() {
+          $.ajax({
+            url: "../Models/menu.php",
+            success: function (response) {
+              // Actualizar el contenido del menú
+              $("#sidebar").html(response);
+            },
+            error: function () {
+              // Manejar errores en la solicitud AJAX
+              console.log("Error al obtener el menú");
+            },
+          });
+        }
+        function obtenerMenu() {
+          $.ajax({
+            url: "../Models/menu.php",
+            success: function (response) {
+              // Actualizar el contenido del menú
+              $("#sidebar").html(response);
+            },
+            error: function () {
+              // Manejar errores en la solicitud AJAX
+              console.log("Error al obtener el menú");
+            },
+          });
         }
         function hideSidebar() {
-              const sidebar = document.querySelector('.sidebar');
-              
-              sidebar.classList.add('close');
+          const sidebar = document.querySelector(".sidebar");
+
+          sidebar.classList.add("close");
+        }
+
+        function resetTimer() {
+          if (window.sidebarTimer) {
+            clearTimeout(window.sidebarTimer);
           }
 
-          
-          function resetTimer() {
-              
-              if (window.sidebarTimer) {
-                  clearTimeout(window.sidebarTimer);
-              }
-              
-              window.sidebarTimer = setTimeout(hideSidebar, 2000); 
-          }
+          window.sidebarTimer = setTimeout(hideSidebar, 2000);
+        }
 
-         
-          document.addEventListener('mousemove', resetTimer);
-          document.addEventListener('keypress', resetTimer);
+        document.addEventListener("mousemove", resetTimer);
+        document.addEventListener("keypress", resetTimer);
 
-          
-          resetTimer();
-    
+        resetTimer();
       });
     </script>
   </body>

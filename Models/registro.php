@@ -91,7 +91,7 @@ if ($_POST) {
             $mail->Body = '<html>
                 <head>
                 <meta charset="UTF-8">
-                    <title>Bienvenido a Tec Milenio</title>
+                    <title>Bienvenido a Mi Portal Tec Milenio</title>
                     <style>
                         .container {
                             font-family: Arial, sans-serif;
@@ -123,19 +123,20 @@ if ($_POST) {
                 </head>
                 <body>
                     <div class="container">
-                        <h1 class="header">¡Bienvenido a Tec Milenio!</h1>
+                        <h1 class="header">¡Bienvenido a Mi Portal Tec Milenio!</h1>
                         <div class="info">
                             <h3>Estimado/a ' . $nombre . ',</h3>
-                            <p>¡Nos complace darte la bienvenida a nuestra comunidad académica! Aquí tienes algunos detalles importantes de tu inscripción:</p>
-                            <p><b>Correo:</b> ' . $correo . '</p>
-                            <p><b>Contraseña:</b> ' . $contraseña . ' <i>(recomendamos cambiarla a la brevedad)</i></p>
+                            <p>¡Nos complace darte la bienvenida a nuestra comunidad académica! Aquí tienes algunos detalles importantes de tu registro:</p>
+                            <p><b>Correo electrónico:</b> ' . $correo . '</p>
                             <p><b>Matrícula:</b> ' . $matricula . '</p>
-                            <p><b>Teléfono:</b> ' . $telefono . '</p>
+                            <p><b>Teléfono de contacto:</b> ' . $telefono . '</p>
                             <p><b>Fecha de Nacimiento:</b> ' . $fechaNac . '</p>                            
                             <p><b>Domicilio:</b> ' . $domicilio . ', ' . $ciudad . ', ' . $pais . ' - ' . $cp . '</p>
-                            <p>Esperamos que tu experiencia en Tec Milenio sea enriquecedora y llena de aprendizajes significativos.</p>
+                            <p>Esperamos que tu experiencia en Mi portal Tec Milenio sea enriquecedora y llena de aprendizajes significativos.</p>
                             <p>Si tienes alguna duda o necesitas más información, no dudes en contactarnos.</p>
+                            <p>Para cualquier duda o comentario, llama al teléfono 8128859680 o envia un correo electrónico a salashiram@outlook.com</p>
                             <p>¡Mucho éxito en tu nueva etapa académica!</p>
+                            <p><b>"Este correo ha sido generado automáticamente. Por favor, no respondas a este mensaje, ya que no será recibido ni revisado por un agente humano."</b></p>
                         </div>
                     </div>
                 </body>
