@@ -8,37 +8,37 @@ header('Content-Type: application/json');
 $usuarioExistente = 0;
 
 
-if($_POST){
-    
+if ($_POST) {
+
     $nombre = $_POST['nombre'];
-    
+
     $correo = $_POST['correo'];
     $fechaNac = $_POST['Fecha_N'];
-    
+
     $contraseña = $_POST['contrasenia'];
-    
+
     $confcontra = $_POST['confcontra'];
     $matricula = $_POST['matricula'];
     $telefono = $_POST['telefono'];
-    
+
     $seleccion = $_POST['gender'];
     $rol = 0;
-    
-   
-    
-      if ($seleccion == 'alumno') {
-          $rol = 1;
-          
-      } else if ($seleccion == 'empleado') {
-          $rol = 0;
-      }
-    
+
+
+
+    if ($seleccion == 'alumno') {
+        $rol = 1;
+
+    } else if ($seleccion == 'empleado') {
+        $rol = 0;
+    }
+
     $domicilio = $_POST['domicilio'];
     $pais = $_POST['pais'];
     $ciudad = $_POST['ciudad'];
     $cp = $_POST['cp'];
-    
-    
+
+
 
     $query = "CALL spVerificarUsuario('$correo', @usuarioExistente)";
     $result = mysqli_query($conn, $query);
@@ -56,39 +56,39 @@ if($_POST){
 
     $row = mysqli_fetch_array($result);
     $usuarioExistente = $row[0];
-   
+
     if ($usuarioExistente > 0) {
-        
+
         echo json_encode(['success' => true, 'message' => 'error']);
         exit();
     } else {
-        
-            $query = "CALL spGestionUsuarios('IN','1','$correo','$nombre','$contraseña','$fechaNac','$matricula','$telefono','$fechaNac','$rol','$domicilio','$pais','$ciudad','$cp','0')";
-            $result = mysqli_query($conn, $query);
-            if (!$result) {
-                // Enviar respuesta de error
-                echo json_encode(['success' => false, 'message' => 'Error al ejecutar la consulta: ' . mysqli_error($conn)]);
-                exit();
-            } else {
 
-                $mail = new PHPMailer\PHPMailer\PHPMailer();
+        $query = "CALL spGestionUsuarios('IN','1','$correo','$nombre','$contraseña','$fechaNac','$matricula','$telefono','$fechaNac','$rol','$domicilio','$pais','$ciudad','$cp','0')";
+        $result = mysqli_query($conn, $query);
+        if (!$result) {
+            // Enviar respuesta de error
+            echo json_encode(['success' => false, 'message' => 'Error al ejecutar la consulta: ' . mysqli_error($conn)]);
+            exit();
+        } else {
 
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'ieuw3660@gmail.com'; // Tu dirección de correo electrónico de Gmail
-                $mail->Password = 'audx ssfn dkgn ufvg'; // Tu contraseña de Gmail
-                $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+            $mail = new PHPMailer\PHPMailer\PHPMailer();
 
-               
-                $mail->setFrom('ieuw3660@gmail.com', 'IEUW');
-                $mail->addAddress($correo); // Añadir el destinatario
-                $mail->isHTML(true); // Configurar el formato del email a HTML
-                $mail->CharSet = 'UTF-8';
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'ieuw3660@gmail.com'; // Tu dirección de correo electrónico de Gmail
+            $mail->Password = 'audx ssfn dkgn ufvg'; // Tu contraseña de Gmail
+            $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
-                $mail->Subject = 'Bienvenido';
-                $mail->Body    = '<html>
+
+            $mail->setFrom('ieuw3660@gmail.com', 'IEUW');
+            $mail->addAddress($correo); // Añadir el destinatario
+            $mail->isHTML(true); // Configurar el formato del email a HTML
+            $mail->CharSet = 'UTF-8';
+
+            $mail->Subject = 'Bienvenido';
+            $mail->Body = '<html>
                 <head>
                 <meta charset="UTF-8">
                     <title>Bienvenido a Tec Milenio</title>
@@ -140,22 +140,22 @@ if($_POST){
                     </div>
                 </body>
                 </html>';
-                try {
-                    $mail->send();
-                    echo json_encode(['success' => true, 'message' => 'Registro exitoso']);
-                } catch (Exception $e) {
-                    echo json_encode(['success' => false, 'message' => 'El mensaje no se pudo enviar. Error: ' . $mail->ErrorInfo]);
-                }
-                exit();
-                // Enviar respuesta de éxito
-               
+            try {
+                $mail->send();
+                echo json_encode(['success' => true, 'message' => 'Registro exitoso']);
+            } catch (Exception $e) {
+                echo json_encode(['success' => false, 'message' => 'El mensaje no se pudo enviar. Error: ' . $mail->ErrorInfo]);
             }
-            
-        
+            exit();
+            // Enviar respuesta de éxito
+
+        }
+
+
     }
 
 
-}else{
+} else {
     echo json_encode(['success' => false, 'message' => 'No se recibieron datos POST']);
 }
 mysqli_close($conn);
