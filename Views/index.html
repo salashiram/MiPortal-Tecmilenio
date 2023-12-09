@@ -16,20 +16,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <title>Mi Portal Tecmilenio</title>
 </head>
 <body>
-
-
-
   <!-- pantalla de carga -->
   <div class="overlay">
     <div class="loader"></div>
   </div>
-
-
-
     <section> 
         <!--carousel starts -->
         <section id="container-slider">    
@@ -129,9 +125,10 @@
                   <input id="onlyText" name="onlyText" type="text" placeholder="" required name="nombre"/>
                   <p id="mensaje-error" style="color: red; display: none;">Datos inválidos, revise nuevamente.</p>
               </div>
+              <!-- autocomplete JQUERY -->
                 <div class="input-box">
                   <label>Dirección de correo electrónico<span class="required">*</span></label>
-                  <input type="text" placeholder="hola@tecmilenio.com.mx" required name="correo"/>
+                  <input id="email" type="text" placeholder="hola@tecmilenio.com.mx" required name="correo"/>
                 </div>
                 <div class="column">
                   <div class="input-box">
@@ -291,6 +288,7 @@
 <script src="../Controllers/phoneValidation.js"></script>
 <script src="../Controllers/inputNameValidator.js"></script>
 <script src="../Controllers/datePicker.js"></script>
+<script src="../Controllers/autocomplete.js"></script>
 <!-- <script src="../Controllers/overlay.js"></script> -->
 <script>
   $(document).ready(function() {
