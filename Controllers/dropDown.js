@@ -4,6 +4,7 @@ let icon = document.getElementById("icon");
 let list = document.getElementById("list");
 let input = document.getElementById("search-input");
 let listItems = document.querySelectorAll(".dropdown-list-item");
+let selectedPeriodoId = null;
 
 dropdownBtnText.onclick = function () {
   list.classList.toggle("show");
@@ -21,13 +22,4 @@ window.onclick = function (e) {
   }
 };
 
-for (item of listItems) {
-  item.onclick = function (e) {
-    span.innerText = e.target.innerText;
-    if (e.target.innerText == "Everything") {
-      input.placeholder = "Buscar materia...";
-    } else {
-      input.placeholder = "Buscar en " + e.target.innerText + "...";
-    }
-  };
-}
+

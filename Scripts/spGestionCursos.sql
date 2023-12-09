@@ -42,6 +42,12 @@ BEGIN
         FROM Curso
         WHERE IdCurso = p_ID_curso;
     END IF;
+    
+    IF p_Accion = 'SE2' THEN
+        SELECT IdCurso, NombreCurso, Semestre, Creditos, CursoEliminado
+        FROM Curso
+         WHERE Semestre = p_Semestre ;
+    END IF;
 END //
 
 DELIMITER ;

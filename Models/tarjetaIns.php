@@ -10,21 +10,23 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 // Parámetros de entrada
+
+
+$user = $_SESSION['ID_usuario'] ;
 if (isset($_GET['IdPeriodo'])) {
     $idPeriodo = $_GET['IdPeriodo'];
     
-} else {
-    
+    if($idPeriodo == 1)$idPeriodo = 6;
+    elseif($idPeriodo == 2)$idPeriodo = 7;
+    elseif($idPeriodo == 3)$idPeriodo = 8;
 }
 
-$user = $_SESSION['ID_usuario'] ;
-$fecha = '2023-11-24';
 // Consulta para llamar al procedimiento almacenado según la acción y la paginación
 $query = "";
 
 
     //$query = "CALL spGestionCursos('$accion','1','5','100','$busqueda','descripcion','','','1','0','$categoria','2000-05-05','$inicio','$cursosPorPagina','2')";
-    $query = "CALL spGestionCursosUsuarios('SE3','1','1','$user','0','0','0','0','0','','0','','','1','$fecha')";            
+    $query = "CALL spGestionCursos('SE2','1','','$idPeriodo','0','0')";            
 
 
 

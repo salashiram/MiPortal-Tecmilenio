@@ -51,10 +51,7 @@
             </div>
             <!-- selector de periodo de calificaciones -->
             <ul id="list" class="dropdown-list">
-              <li class="dropdown-list-item">Periodo Ago 2023 - Dic 2023</li>
-              <li class="dropdown-list-item">Periodo Ago 2024 - Dic 2024</li>
-              <li class="dropdown-list-item">Periodo Ago 2025 - Dic 2025</li>
-              <li class="dropdown-list-item">Periodo Ago 2026 - Dic 2026</li>
+              
             </ul>
           </div>
           <!-- <div class="card-body">
@@ -136,28 +133,8 @@
       <div class="cards-title">
         <p>Selecciona el curso(s) a inscribir en el periodo en cuestión</p>
       </div>
-      <div class="card-content">
-        <div class="card">
-          <h2 class="card-title">Nombre del Curso</h2>
-          <p class="card-subhead">Horario del Curso</p>
-          <p class="card-subhead">Modalidad</p>
-          <p class="card-subhead">Créditos</p>
-          <button class="inscribir-btn">Inscribir</button>
-        </div>
-        <div class="card">
-          <h2 class="card-title">Nombre del Curso</h2>
-          <p class="card-subhead">Horario del Curso</p>
-          <p class="card-subhead">Modalidad</p>
-          <p class="card-subhead">Créditos</p>
-          <button class="inscribir-btn">Inscribir</button>
-        </div>
-        <div class="card">
-          <h2 class="card-title">Nombre del Curso</h2>
-          <p class="card-subhead">Horario del Curso</p>
-          <p class="card-subhead">Modalidad</p>
-          <p class="card-subhead">Créditos</p>
-          <button class="inscribir-btn">Inscribir</button>
-        </div>
+      <div id="contenedorPrincipal" class="card-content">
+        
       </div>
     </div>
 
@@ -167,7 +144,8 @@
     <script>
       $(document).ready(function () {
         obtenerMenu();
-
+        obtenerPeriodo();
+        
         $("#sidebar").on("click", "#logoutButton", function (e) {
           e.preventDefault();
 
@@ -193,6 +171,34 @@
 
           
         });
+
+        
+
+          function tarjetaCursos(cursos) {
+              cursos.forEach(function (curso) {
+                  
+                 
+                  $("#contenedorPrincipal").append(`
+                  <div class="card">
+                    <h2 class="card-title">${curso.NombreCurso}</h2>
+                    <p class="card-subhead">Semestre: ${curso.Semestre}</p>
+                    <p class="card-subhead">Modalidad: En linea</p>
+                    <p class="card-subhead">Créditos: ${curso.Creditos}</p>
+                    <button id="ins${curso.IdCurso}" class="inscribir-btn">Inscribir</button>
+                  </div>
+                  
+                                
+              `);
+              });
+
+              $(".inscribir-btn").on("click", function () {
+                  var cursoId = this.id.replace('ins', ''); 
+                  inscribirCurso(cursoId); 
+              });
+
+              
+
+          }
 
         function obtenerMenu() {
           $.ajax({
@@ -227,6 +233,97 @@
 
           
           resetTimer();
+
+          function inscribirCurso(cursoId) {
+                $.ajax({
+                    type: "POST",
+                    url: "../Models/inscribirCurso.php", 
+                    data: { cursoId: cursoId },
+                    success: function (response) {
+                        // Manejar la respuesta del servidor
+                        console.log("Inscripción exitosa", response);
+                    },
+                    error: function (xhr, status, error) {
+                        // Manejar errores
+                        console.error("Error en la inscripción", error);
+                    }
+                });
+            }
+
+          async function obtenerPeriodo() {
+            try {
+                const response = await fetch('../Models/periodofetch.php', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    const categorias = await response.json();
+                    console.log(categorias);
+
+                    // Generar las opciones de categoría dinámicamente
+                    let optionsHTML = '';
+                    categorias.forEach(categoria => {
+                        optionsHTML += `<li class="dropdown-list-item" data-value="${categoria.IdPeriodo}">${categoria.NombrePeriodo}</li>`;
+                    });
+
+                    // Actualizar el elemento UL
+                    const periodoList = document.getElementById('list');
+                    periodoList.innerHTML = '';
+                    periodoList.innerHTML += optionsHTML;
+
+                    // Agregar evento click a cada elemento LI
+                    periodoList.querySelectorAll('.dropdown-list-item').forEach(item => {
+                      item.onclick = function (e) {
+                          span.innerText = e.target.innerText;
+                          selectedPeriodoId = e.target.getAttribute('data-value'); // Aquí capturas el ID
+                          list.classList.remove('show');
+                          icon.style.rotate = '0deg';
+                          obtenerCursos(selectedPeriodoId); // Llamas a obtenerCursos con el ID
+                      };
+                  });
+
+                  function obtenerCursos(idPeriodo) {
+              $.ajax({
+                  url: '../Models/tarjetaIns.php',
+                  type: 'GET',
+                  dataType: 'json',
+                  data: {
+                    IdPeriodo: idPeriodo                      
+                  },
+                  success: function (response) {
+                      // Utilizar los datos recibidos en el arreglo
+                      if (response && response.length > 0) {
+                          console.log(response);
+                        
+                          tarjetaCursos(response);
+                         
+                         
+                      } else {
+                          console.log("La respuesta está vacía.");
+                      }
+                  },
+                  error: function (xhr, status, error) {
+                      console.error(error);
+                      // Mostrar una alerta antes de redirigir
+                          alert('¡Oh, no! Parece que algo salió mal. Por favor, inicia sesión para continuar.');
+
+                      // Redirigir a index.html con un mensaje de no inicio de sesión
+                      
+                  }
+              });
+          }
+                                    
+                } else {
+                    
+                    console.error('Error en la solicitud:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
 
       });
     </script>

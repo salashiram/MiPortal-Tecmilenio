@@ -28,7 +28,7 @@ BEGIN
     IF p_Accion = 'SE' THEN
         SELECT IdPeriodo, NombrePeriodo
         FROM Periodo
-        WHERE IdPeriodo = p_ID_periodo;
+        ;
     END IF;
 END //
 
