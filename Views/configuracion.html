@@ -187,6 +187,38 @@
           });
         });
 
+        $("#myToggle3").change(function () {
+            var mostrarFavoritos = $(this).is(":checked");
+
+            // Cambiar el estado de los otros toggles
+            $("#myToggle4").prop("checked", mostrarFavoritos);
+            $("#myToggle5").prop("checked", mostrarFavoritos);
+            $("#myToggle6").prop("checked", mostrarFavoritos);
+
+            // Actualizar el estado en el servidor para todos los toggles
+            actualizarEstadoToggle('myToggle3', mostrarFavoritos);
+            actualizarEstadoToggle('myToggle4', mostrarFavoritos);
+            actualizarEstadoToggle('myToggle5', mostrarFavoritos);
+            actualizarEstadoToggle('myToggle6', mostrarFavoritos);
+        });
+
+        function actualizarEstadoToggle(toggleId, estado) {
+            $.ajax({
+                type: "POST",
+                url: "../Models/manejarToggle.php",
+                data: {
+                    toggle: toggleId,
+                    state: estado
+                },
+                success: function (response) {
+                    // Manejar respuesta del servidor
+                },
+                error: function () {
+                    alert("Error al cambiar el estado del toggle");
+                }
+            });
+        }
+
         $(".toggle__input").change(function () {
           var toggleId = $(this).attr("id");
           var toggleState = $(this).is(":checked");
